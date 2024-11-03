@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Z-Craft
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Z-Craft est un gestionnaire de CV modulaire permettant de créer, éditer et gérer vos CV de manière simple et efficace.
 
-Currently, two official plugins are available:
+## Fonctionnalités
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Création de CV** : Ajoutez et personnalisez vos CV.
+- **Gestion des sections** : Organisez vos CV en sections modulaires.
+- **Exportation en PDF** : Exportez vos CV au format PDF.
+- **Modèles de CV** : Choisissez parmi différents modèles ou créez les vôtres.
 
-## Expanding the ESLint configuration
+## Technologies utilisées
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [SCSS](https://sass-lang.com/)
+- [Zustand](https://github.com/pmndrs/zustand) pour la gestion de l'état
+- [Dexie.js](https://dexie.org/) pour IndexedDB
+- [ESLint](https://eslint.org/) et [Prettier](https://prettier.io/) pour le linting et le formatage
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Cloner le dépôt**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+   ```bash
+   git clone https://github.com/votre-nom-utilisateur/z-craft.git
+   cd z-craft
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Installer les dépendances**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+   ```bash
+   npm install
+   
+3. **Démarrer le serveur de développement**
+
+   ```bash
+    npm run dev
+   
+4. **Ouvrir l'application**
+
+## Scripts disponibles
+
+- `npm run dev`: Démarrer le serveur de développement.
+- `npm run build`: Créer une version de production.
+- `npm run preview`: Prévisualiser la version de production localement.
+- `npm run lint`: Lancer ESLint.
+- `npm run format`: Formater le code avec Prettier.
+
+
+## Contributeurs
+
+Les contributions ne sont pas prévues pour le moment, car il s'agit d'un projet personnel.
+
+

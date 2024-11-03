@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useCVStore } from '../store/useCVStore';
 import { db, CV } from '../database/db';

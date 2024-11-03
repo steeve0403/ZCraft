@@ -17,7 +17,9 @@ const CVList: React.FC = () => {
                     {cvs.map((cv) => (
                         <li key={cv.id} className={styles.cvItem}>
                             <span>{cv.title}</span>
-                            <button onClick={() => deleteCV(cv.id!)}>Supprimer</button>
+                            <button onClick={() => deleteCV(cv.id!)}>
+                                Supprimer
+                            </button>
                         </li>
                     ))}
                 </ul>

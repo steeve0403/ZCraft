@@ -20,7 +20,7 @@ class ZCraftDB extends Dexie {
     constructor() {
         super('ZCraftDB');
         this.version(1).stores({
-            cvs: '++id, title',
+            cvs: '++id, title'
         });
 
         this.cvs = this.table('cvs');

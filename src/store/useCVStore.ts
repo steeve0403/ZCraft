@@ -1,7 +1,7 @@
 // src/store/useCVStore.ts
 
-import {create} from 'zustand';
-import {CV} from '../database/db';
+import { create } from 'zustand';
+import { CV } from '../database/db';
 
 interface CVState {
     cvs: CV[];
@@ -13,17 +13,17 @@ interface CVState {
 
 export const useCVStore = create<CVState>((set) => ({
     cvs: [],
-    setCVs: (cvs) => set({cvs}),
+    setCVs: (cvs) => set({ cvs }),
     addCV: (cv) =>
         set((state) => ({
-            cvs: [...state.cvs, cv],
+            cvs: [...state.cvs, cv]
         })),
     updateCV: (cv) =>
         set((state) => ({
-            cvs: state.cvs.map((item) => (item.id === cv.id ? cv : item)),
+            cvs: state.cvs.map((item) => (item.id === cv.id ? cv : item))
         })),
     deleteCV: (id) =>
         set((state) => ({
-            cvs: state.cvs.filter((cv) => cv.id !== id),
-        })),
+            cvs: state.cvs.filter((cv) => cv.id !== id)
+        }))
 }));

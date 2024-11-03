@@ -2,7 +2,9 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "module": "CommonJS",
-    "types": ["node"]
+    "types": ["node"],
+    "outDir": "dist-node"
   },
-  "include": ["vite.config.ts", ".eslintrc.js"]
+  "include": ["vite.config.ts", ".eslintrc.js"],
+  "exclude": ["node_modules"]
 }
