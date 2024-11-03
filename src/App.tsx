@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from './App.module.scss';
 import CVList from './components/CVList/CVList';
-import CVForm from './components/CVForm/CVForm.tsx';
+import CVForm from './components/CVForm/CVForm';
 
 const App: React.FC = () => {
     return (
