@@ -9,22 +9,24 @@ export default {
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: {
-            jsx: true,
+            jsx: true
         },
-        project: './tsconfig.json',
+        project: './tsconfig.json'
     },
     env: {
         browser: true,
         es2021: true,
-        node: true,
+        node: true
     },
     plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
     extends: [
         'eslint:recommended',
         'plugin:react/recommended',
-        'plugin:react-hooks/recommended',
         'plugin:@typescript-eslint/recommended',
-        'prettier',
+        'plugin:import/errors',
+        'plugin:import/warnings',
+        'plugin:import/typescript',
+        'prettier'
     ],
     rules: {
         'prettier/prettier': ['error', { endOfLine: 'auto' }],
@@ -32,13 +34,16 @@ export default {
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
         'react/prop-types': 'off',
-        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/no-explicit-any': 'warn'
 
     },
     settings: {
         react: {
-            version: 'detect',
+            version: 'detect'
         },
+        'import/resolver': {
+            typescript: {}
+        }
     },
-    ignorePatterns: ['node_modules/', 'dist/', 'build/', 'vite.config.ts'],
+    ignorePatterns: ['node_modules/', 'dist/', 'build/', 'vite.config.ts']
 };
