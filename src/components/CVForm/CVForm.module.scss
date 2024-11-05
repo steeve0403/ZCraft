@@ -1,23 +1,37 @@
-/* src/components/CVForm/CVForm.module.scss */
+.container {
+    padding: 20px;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
 
 .form {
     display: flex;
-    margin-bottom: 20px;
+    flex-direction: column;
+    gap: 15px;
+}
 
-    input {
-        flex: 1;
-        padding: 8px;
-        margin-right: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
+.label {
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+}
 
-    button {
-        padding: 8px 16px;
-        background-color: #2ecc71;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+.input,
+.textarea {
+    padding: 8px;
+    font-size: 16px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+}
+
+.submitButton {
+    padding: 10px 15px;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }

@@ -5,6 +5,8 @@
     "types": ["node"],
     "outDir": "dist-node"
   },
-  "include": ["vite.config.ts", ".eslintrc.js"],
+  "include": ["vite.config.ts",
+    "eslint.config.js"
+  ],
   "exclude": ["node_modules"]
 }

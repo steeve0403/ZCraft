@@ -1,31 +1,23 @@
-// src/components/CVList/CVList.tsx
-
 import React from 'react';
-import { useCVs } from '../../hooks/useCVs';
+import { Link } from 'react-router-dom';
+import { useCVs } from '@/hooks/useCVs';
 import styles from './CVList.module.scss';
+import { CVCard } from '@/components/CVCard/CVCard';
 
-const CVList: React.FC = () => {
+export const CVList: React.FC = () => {
     const { cvs, deleteCV } = useCVs();
 
     return (
         <div className={styles.container}>
-            <h2>Mes CV</h2>
-            {cvs.length === 0 ? (
-                <p>Aucun CV disponible.</p>
-            ) : (
-                <ul className={styles.cvList}>
-                    {cvs.map((cv) => (
-                        <li key={cv.id} className={styles.cvItem}>
-                            <span>{cv.title}</span>
-                            <button onClick={() => deleteCV(cv.id!)}>
-                                Supprimer
-                            </button>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <h1 className={styles.title}>Mes CV</h1>
+            <div className={styles.cvList}>
+                {cvs.map((cv) => (
+                    <CVCard key={cv.id} cv={cv} onDelete={deleteCV} />
+                ))}
+            </div>
+            <Link to="/cv/new" className={styles.addButton}>
+                + Nouveau CV
+            </Link>
         </div>
     );
 };
-
-export default CVList;

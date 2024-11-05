@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
+    "module": "ESNext",
     "lib": [
       "DOM",
       "DOM.Iterable",
@@ -19,8 +20,8 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
     "moduleResolution": "Node",
+    "skipDefaultLibCheck": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

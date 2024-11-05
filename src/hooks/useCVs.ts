@@ -1,35 +1,53 @@
-import { useEffect } from 'react';
-import { useCVStore } from '../store/useCVStore';
-import { db, CV } from '../database/db';
+// src/hooks/useCVs.ts
 
-export const useCVs = () => {
+import { useEffect, useCallback, useMemo } from 'react';
+import { useCVStore } from '../store/useCVStore';
+
+export const useCVs = (userId: number) => {
     const cvs = useCVStore((state) => state.cvs);
-    const setCVs = useCVStore((state) => state.setCVs);
+    const loading = useCVStore((state) => state.loading);
+    const error = useCVStore((state) => state.error);
+    const fetchCVs = useCVStore((state) => state.fetchCVs);
+    const addCV = useCVStore((state) => state.addCV);
+    const updateCV = useCVStore((state) => state.updateCV);
+    const deleteCV = useCVStore((state) => state.deleteCV);
 
     useEffect(() => {
-        const loadCVs = async () => {
-            const allCVs = await db.cvs.toArray();
-            setCVs(allCVs);
-        };
+        fetchCVs(userId);
+    }, [userId, fetchCVs]);
 
-        loadCVs();
-    }, [setCVs]);
+    const userCVs = useMemo(
+        () => cvs.filter((cv) => cv.userId === userId),
+        [cvs, userId]
+    );
 
-    const addCV = async (cv: CV) => {
-        const id = await db.cvs.add(cv);
-        const newCV = { ...cv, id };
-        useCVStore.getState().addCV(newCV);
+    const addCVCallback = useCallback(
+        (cvData: CV) => {
+            addCV(cvData);
+        },
+        [addCV]
+    );
+
+    const updateCVCallback = useCallback(
+        (cvData: CV) => {
+            updateCV(cvData);
+        },
+        [updateCV]
+    );
+
+    const deleteCVCallback = useCallback(
+        (cvId: number) => {
+            deleteCV(cvId);
+        },
+        [deleteCV]
+    );
+
+    return {
+        cvs: userCVs,
+        loading,
+        error,
+        addCV: addCVCallback,
+        updateCV: updateCVCallback,
+        deleteCV: deleteCVCallback
     };
-
-    const updateCV = async (cv: CV) => {
-        await db.cvs.put(cv);
-        useCVStore.getState().updateCV(cv);
-    };
-
-    const deleteCV = async (id: number) => {
-        await db.cvs.delete(id);
-        useCVStore.getState().deleteCV(id);
-    };
-
-    return { cvs, addCV, updateCV, deleteCV };
 };

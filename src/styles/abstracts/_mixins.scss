@@ -1,0 +1,14 @@
+@use 'variables' as v;
+
+@mixin button-base {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    font-size: v.$font-size-base;
+}
+
+@mixin input-base {
+    padding: 8px;
+    font-size: v.$font-size-base;
+    border: 1px solid v.$border-color;
+}
