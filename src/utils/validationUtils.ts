@@ -64,3 +64,32 @@ export function validateOptionalData<T>(
     }
     return validateData(schema, data);
 }
+
+/**
+ * Validates if the given value is a valid email address.
+ * @param email - The email address to validate.
+ * @returns True if the email is valid, otherwise false.
+ */
+export function isValidEmail(email: string): boolean {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+/**
+ * Validates if the given value is a valid phone number.
+ * @param phoneNumber - The phone number to validate.
+ * @returns True if the phone number is valid, otherwise false.
+ */
+export function isValidPhoneNumber(phoneNumber: string): boolean {
+    const phoneRegex = /^\+?[1-9]\d{1,14}$/;
+    return phoneRegex.test(phoneNumber);
+}
+
+/**
+ * Validates if the given value is not empty.
+ * @param value - The value to validate.
+ * @returns True if the value is not empty, otherwise false.
+ */
+export function isNotEmpty(value: string): boolean {
+    return value.trim().length > 0;
+}

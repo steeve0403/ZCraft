@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { App } from './App';
 import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary';
+import { initializeAdmin } from '@/database/initAdmin';
 
 /**
  * Main entry point for the application.
@@ -18,10 +19,13 @@ if (!rootElement) {
     throw new Error("Root element with ID 'root' not found.");
 }
 
-createRoot(rootElement).render(
-    <StrictMode>
-        <ErrorBoundary>
-            <App />
-        </ErrorBoundary>
-    </StrictMode>
-);
+// Initialize the admin user if it doesn't exist
+initializeAdmin().then(() => {
+    createRoot(rootElement).render(
+        <StrictMode>
+            <ErrorBoundary>
+                <App />
+            </ErrorBoundary>
+        </StrictMode>
+    );
+});

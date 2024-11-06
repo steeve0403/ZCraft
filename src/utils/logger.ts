@@ -1,50 +1,39 @@
+import log from 'loglevel';
+
+log.setLevel('info');
+
 export enum LogLevel {
-    DEBUG = 'debug',
     INFO = 'info',
     WARN = 'warn',
     ERROR = 'error'
 }
 
-interface LogOptions {
+interface LogMessage {
     level: LogLevel;
     message: string;
     context?: string;
-    error?: Error;
 }
 
-export class Logger {
-    static log({ level, message, context, error }: LogOptions): void {
-        const timestamp = new Date().toISOString();
-        let logMessage = `[${timestamp}] [${level.toUpperCase()}]`;
-
-        if (context) {
-            logMessage += ` [${context}]`;
-        }
-
-        logMessage += `: ${message}`;
-
-        if (error) {
-            logMessage += `\nError Stack: ${error.stack}`;
-        }
+export const Logger = {
+    log: (message: LogMessage) => {
+        const { level, message: msg, context } = message;
+        const formattedMessage = context ? `[${context}] ${msg}` : msg;
 
         switch (level) {
-            case LogLevel.DEBUG:
             case LogLevel.INFO:
-                console.log(logMessage);
+                log.info(formattedMessage);
                 break;
             case LogLevel.WARN:
-                console.warn(logMessage);
+                log.warn(formattedMessage);
                 break;
             case LogLevel.ERROR:
-                console.error(logMessage);
+                log.error(formattedMessage);
                 break;
+            default:
+                log.info(formattedMessage);
         }
+    },
+    setLevel: (level: log.LogLevelDesc) => {
+        log.setLevel(level);
     }
-}
-
-// Usage Example
-// Logger.log({
-//     level: LogLevel.INFO,
-//     message: 'User registered successfully.',
-//     context: 'AuthService',
-// });
+};

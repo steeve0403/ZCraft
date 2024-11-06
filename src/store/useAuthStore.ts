@@ -1,74 +1,50 @@
-/* global localStorage */
 import { create } from 'zustand';
-import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import { User } from '@/models/User';
-import { authService } from '@/services/AuthService';
-import { CacheService } from '@/services/CacheService';
-import { ServiceWrapper } from '@/services/ServiceWrapper';
-
-const cacheService = new CacheService<User>(60);
-const serviceWrapper = new ServiceWrapper('AuthStore');
+import { UserService } from '@/services/userService';
+import { User, UserRole } from '@/models/User';
 
 interface AuthState {
     user: User | null;
     loading: boolean;
     error: string | null;
-    register: (userData: User) => Promise<void>;
-    login: (email: string, password: string) => Promise<void>;
+    register: (userData: any, requesterRole?: UserRole) => Promise<void>;
+    login: (loginData: any) => Promise<void>;
     logout: () => void;
 }
 
-export const useAuthStore = create<AuthState>()(
-    devtools(
-        persist(
-            (set) => ({
-                user: null,
-                loading: false,
-                error: null,
-                register: async (userData: User) => {
-                    set({ loading: true, error: null });
-                    try {
-                        const userId = await serviceWrapper.wrap(() => authService.register(userData));
-                        const user = { ...userData, id: userId };
-                        cacheService.set(`user_${userId}`, user);
-                        set({ user });
-                    } catch (error) {
-                        set({
-                            error:
-                                error instanceof Error
-                                    ? error.message
-                                    : 'Unknown error'
-                        });
-                    } finally {
-                        set({ loading: false });
-                    }
-                },
-                login: async (email: string, password: string) => {
-                    set({ loading: true, error: null });
-                    try {
-                        const user = await serviceWrapper.wrap(() => authService.login(email, password));
-                        cacheService.set(`user_${user.id}`, user);
-                        set({ user });
-                    } catch (error) {
-                        set({
-                            error:
-                                error instanceof Error
-                                    ? error.message
-                                    : 'Unknown error'
-                        });
-                    } finally {
-                        set({ loading: false });
-                    }
-                },
-                logout: () => {
-                    set({ user: null });
-                }
-            }),
-            {
-                name: 'auth-storage',
-                storage: createJSONStorage(() => localStorage)
-            }
-        ),
-        { name: 'AuthStore' }
-    )
-);
+export const useAuthStore = create<AuthState>((set) => ({
+    user: null,
+    loading: false,
+    error: null,
+
+    register: async (userData, requesterRole = 'user') => {
+        set({ loading: true, error: null });
+        try {
+            const userService = new UserService();
+            const newUser = await userService.register(userData, requesterRole);
+            set({ user: newUser, loading: false });
+            // Stockage dans localStorage
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+        } catch (error: any) {
+            set({ error: error.message, loading: false });
+        }
+    },
+
+    login: async (loginData) => {
+        set({ loading: true, error: null });
+        try {
+            const userService = new UserService();
+            const loggedInUser = await userService.login(loginData);
+            set({ user: loggedInUser, loading: false });
+            // Stockage dans localStorage
+            localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
+        } catch (error: any) {
+            set({ error: error.message, loading: false });
+        }
+    },
+
+    logout: () => {
+        set({ user: null });
+        // Suppression du localStorage
+        localStorage.removeItem('currentUser');
+    },
+}));
