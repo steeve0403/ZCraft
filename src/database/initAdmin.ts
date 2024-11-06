@@ -2,8 +2,11 @@ import { db } from '@/database/db';
 import { UserService } from '@/services/userService';
 
 export const initializeAdmin = async () => {
-    const adminEmail = 'admin@example.com';
-    const existingAdmin = await db.users.where('email').equals(adminEmail).first();
+    const adminEmail = 'zychsteeve4@gmail.com';
+    const existingAdmin = await db.users
+        .where('email')
+        .equals(adminEmail)
+        .first();
 
     if (!existingAdmin) {
         const userService = new UserService();
@@ -11,7 +14,7 @@ export const initializeAdmin = async () => {
             {
                 username: 'admin',
                 email: adminEmail,
-                password: 'adminpassword', // Changez ce mot de passe après la première connexion
+                password: '@dm1nPassword1', // Changez ce mot de passe après la première connexion
                 role: 'admin'
             },
             'admin' // Le requesterRole est 'admin' pour créer un admin

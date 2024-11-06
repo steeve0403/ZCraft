@@ -1,0 +1,13 @@
+@use '@/styles/variables' as *;
+
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: $background-color;
+  border-top: 1px solid $secondary-color;
+
+  p {
+    margin: 0;
+    color: $text-color;
+  }
+}

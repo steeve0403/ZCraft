@@ -1,16 +1,18 @@
 import { Logger, LogLevel } from '@/utils/logger';
+import { handleError } from '@/utils/errorHandler';
+import { AppError } from '@/models/AppError';
 
 interface ServiceResponse<T> {
     data: T | null;
-    error: string | null;
+    error: AppError | null;
 }
 
 export class ServiceWrapper {
     /**
-     * Exécute une fonction de service et gère les erreurs.
-     * @param serviceFn - Fonction de service à exécuter.
-     * @param context - Contexte ou nom du service pour le logging.
-     * @returns Une promesse contenant les données ou une erreur.
+     * Executes a service function and handles errors.
+     * @param serviceFn - The service function to execute.
+     * @param context - Context or name of the service for logging.
+     * @returns A promise containing the data or an error.
      */
     static async executeService<T>(
         serviceFn: () => Promise<T>,
@@ -19,27 +21,24 @@ export class ServiceWrapper {
         try {
             Logger.log({
                 level: LogLevel.INFO,
-                message: `Exécution de ${context}`,
+                message: `Executing ${context}`,
                 context
             });
             const data = await serviceFn();
             Logger.log({
                 level: LogLevel.INFO,
-                message: `${context} réussi.`,
+                message: `${context} succeeded.`,
                 context
             });
             return { data, error: null };
         } catch (error: any) {
-            let errorMessage = 'Une erreur inconnue est survenue.';
-            if (error instanceof Error) {
-                errorMessage = error.message;
-            }
+            const appError = handleError(error);
             Logger.log({
                 level: LogLevel.ERROR,
-                message: `${context} échoué: ${errorMessage}`,
+                message: `${context} failed: ${appError.message}`,
                 context
             });
-            return { data: null, error: errorMessage };
+            return { data: null, error: appError };
         }
     }
 }

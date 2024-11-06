@@ -1,30 +1,40 @@
-import { useAuthStore } from '@/store/useAuthStore';
+import { useAuthStore } from '@/stores/useAuthStore';
 import { useEffect } from 'react';
+import { User } from '@/models/User';
 
 export const useAuth = () => {
-    const user = useAuthStore(state => state.user);
-    const login = useAuthStore(state => state.login);
-    const register = useAuthStore(state => state.register);
-    const logout = useAuthStore(state => state.logout);
+    const {
+        user,
+        loading,
+        error,
+        login,
+        register,
+        logout,
+        requestPasswordReset,
+        resetPassword,
+        hasPermission,
+        setUser
+    } = useAuthStore((state) => ({
+        user: state.user,
+        loading: state.loading,
+        error: state.error,
+        login: state.login,
+        register: state.register,
+        logout: state.logout,
+        requestPasswordReset: state.requestPasswordReset,
+        resetPassword: state.resetPassword,
+        hasPermission: state.hasPermission,
+        setUser: state.setUser
+    }));
 
-    // Persistance de l'utilisateur dans le localStorage au chargement
     useEffect(() => {
         const storedUser = localStorage.getItem('currentUser');
         if (storedUser && !user) {
-            const parsedUser = JSON.parse(storedUser);
-            // Mettre à jour le store avec l'utilisateur stocké
-            // Note : Cette méthode suppose que le mot de passe est stocké, ce qui n'est pas recommandé
-            // Dans une vraie application, l'authentification devrait être gérée côté serveur avec des tokens
-            useAuthStore.getState().login({
-                email: parsedUser.email,
-                password: '' // Impossible de récupérer le mot de passe haché, ajustez selon votre logique
-            }).catch(() => {
-                // Gérer l'erreur si nécessaire
-            });
+            const parsedUser: User & { token: string } = JSON.parse(storedUser);
+            setUser(parsedUser);
         }
-    }, [user]);
+    }, [setUser, user]);
 
-    // Mettre à jour le localStorage lorsque l'utilisateur change
     useEffect(() => {
         if (user) {
             localStorage.setItem('currentUser', JSON.stringify(user));
@@ -33,15 +43,15 @@ export const useAuth = () => {
         }
     }, [user]);
 
-    const isAdmin = user?.role === 'admin';
-    const isAuthenticated = !!user;
-
     return {
         user,
-        isAuthenticated,
-        isAdmin,
+        loading,
+        error,
         login,
         register,
-        logout
+        logout,
+        requestPasswordReset,
+        resetPassword,
+        hasPermission
     };
 };

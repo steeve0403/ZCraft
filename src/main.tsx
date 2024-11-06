@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
@@ -19,13 +19,23 @@ if (!rootElement) {
     throw new Error("Root element with ID 'root' not found.");
 }
 
+const InitializeApp = () => {
+    useEffect(() => {
+        const init = async () => {
+            await initializeAdmin();
+        };
+        init().then(() => console.log('Admin user initialized'));
+    }, []);
+
+    return null;
+};
+
 // Initialize the admin user if it doesn't exist
-initializeAdmin().then(() => {
-    createRoot(rootElement).render(
-        <StrictMode>
-            <ErrorBoundary>
-                <App />
-            </ErrorBoundary>
-        </StrictMode>
-    );
-});
+createRoot(rootElement).render(
+    <StrictMode>
+        <ErrorBoundary>
+            <InitializeApp />
+            <App />
+        </ErrorBoundary>
+    </StrictMode>
+);
