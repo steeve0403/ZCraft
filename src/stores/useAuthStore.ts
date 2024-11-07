@@ -1,29 +1,9 @@
 import { create } from 'zustand';
-import { UserService } from '@/services/userService';
+import { AuthState, RegisterData, LoginData } from '@/models/AuthState';
 import { Logger, LogLevel } from '@/utils/logger';
-import { Role } from '@/models/Role';
-import { User } from '@/models/User';
 import { Permission } from '@/models/Permission';
-import { AppError } from '@/models/AppError';
-
-interface AuthState {
-    user: (User & { token: string }) | null;
-    loading: boolean;
-    error: AppError | null;
-    // eslint-disable-next-line no-unused-vars
-    setUser: (user: (User & { token: string }) | null) => void; // New method
-    // eslint-disable-next-line no-unused-vars
-    register: (userData: any, requesterRole?: Role) => Promise<void>;
-    // eslint-disable-next-line no-unused-vars
-    login: (loginData: any) => Promise<void>;
-    logout: () => void;
-    // eslint-disable-next-line no-unused-vars
-    requestPasswordReset: (email: string) => Promise<string | null>;
-    // eslint-disable-next-line no-unused-vars
-    resetPassword: (token: string, newPassword: string) => Promise<void>;
-    // eslint-disable-next-line no-unused-vars
-    hasPermission: (permission: Permission) => boolean;
-}
+import { generateSecureToken } from '@/utils/tokenGenerator';
+import { UserService } from '@/services/userService';
 
 const SESSION_TIMEOUT = 30 * 60 * 1000; // 30 minutes
 
@@ -31,35 +11,24 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     user: null,
     loading: false,
     error: null,
-    /**
-     * Directly sets the user state.
-     * @param user - The user object to set.
-     */
     setUser: (user) => {
         console.log('setUser called with:', user);
         set({ user });
     },
-
-    /**
-     * Registers a new user.
-     * @param userData - Data for the new user.
-     * @param requesterRole - Role of the user performing the registration.
-     */
     register: async (userData, requesterRole = 'user') => {
         set({ loading: true, error: null });
         try {
+            // eslint-disable-next-line no-undef
             const userService = new UserService();
-            const newUser = await userService.register(userData, requesterRole);
-            // set({ user: newUser as User & { token: string }, loading: false });
+            await userService.register(userData, requesterRole);
             set({ loading: false });
-            localStorage.setItem('currentUser', JSON.stringify(newUser));
             Logger.log({
                 level: LogLevel.INFO,
-                message: `User registered: ${newUser.email}`,
+                message: `User registered: ${userData.email}`,
                 context: 'useAuthStore.register'
             });
-            // resetSessionTimer();
         } catch (error: any) {
+            console.error('useAuthStore.register error:', error);
             set({
                 error: { code: 'SERVER_ERROR', message: error.message },
                 loading: false
@@ -71,16 +40,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
         }
     },
-
-    /**
-     * Logs in a user.
-     * @param loginData - Credentials for login.
-     */
     login: async (loginData) => {
+        console.log('useAuthStore.login called with:', loginData);
         set({ loading: true, error: null });
         try {
             const userService = new UserService();
             const loggedInUser = await userService.login(loginData);
+            loggedInUser.token = generateSecureToken(); // Génération du token
+            console.log('useAuthStore.login: loggedInUser:', loggedInUser);
             set({ user: loggedInUser, loading: false });
             localStorage.setItem('currentUser', JSON.stringify(loggedInUser));
             Logger.log({
@@ -90,6 +57,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
             resetSessionTimer();
         } catch (error: any) {
+            console.error('useAuthStore.login error:', error);
             set({
                 error: { code: 'SERVER_ERROR', message: error.message },
                 loading: false
@@ -101,11 +69,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
         }
     },
-
-    /**
-     * Logs out the current user.
-     */
     logout: () => {
+        console.log('useAuthStore.logout called');
         set({ user: null });
         localStorage.removeItem('currentUser');
         clearSessionTimer();
@@ -115,12 +80,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             context: 'useAuthStore.logout'
         });
     },
-
-    /**
-     * Requests a password reset.
-     * @param email - Email of the user requesting the reset.
-     * @returns The reset token or null if an error occurred.
-     */
     requestPasswordReset: async (email: string) => {
         set({ loading: true, error: null });
         try {
@@ -134,6 +93,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
             return token;
         } catch (error: any) {
+            console.error('useAuthStore.requestPasswordReset error:', error);
             set({
                 error: { code: 'SERVER_ERROR', message: error.message },
                 loading: false
@@ -146,12 +106,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             return null;
         }
     },
-
-    /**
-     * Resets a user's password.
-     * @param token - The password reset token.
-     * @param newPassword - The new password.
-     */
     resetPassword: async (token: string, newPassword: string) => {
         set({ loading: true, error: null });
         try {
@@ -164,6 +118,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
                 context: 'useAuthStore.resetPassword'
             });
         } catch (error: any) {
+            console.error('useAuthStore.resetPassword error:', error);
             set({
                 error: { code: 'SERVER_ERROR', message: error.message },
                 loading: false
@@ -175,12 +130,6 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             });
         }
     },
-
-    /**
-     * Checks if the current user has a specific permission.
-     * @param permission - The permission to check.
-     * @returns True if the user has the permission, false otherwise.
-     */
     hasPermission: (permission: Permission) => {
         const user = get().user;
         if (!user) return false;
@@ -190,24 +139,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 }));
 
 // Session management
-// eslint-disable-next-line no-undef
 let sessionTimer: NodeJS.Timeout;
-let isEventListenerAdded = false; // Flag to ensure single registration
+let isEventListenerAdded = false; // Flag pour assurer une seule inscription
 
-/**
- * Resets the session timer to log out the user after inactivity.
- */
 const resetSessionTimer = () => {
     clearSessionTimer();
     sessionTimer = setTimeout(() => {
         useAuthStore.getState().logout();
-        alert('Your session has expired due to inactivity.');
+        alert('Votre session a expiré en raison d\'inactivité.');
     }, SESSION_TIMEOUT);
 };
 
-/**
- * Clears the session timer.
- */
 const clearSessionTimer = () => {
     if (sessionTimer) {
         clearTimeout(sessionTimer);
@@ -220,3 +162,4 @@ if (!isEventListenerAdded) {
     window.addEventListener('keydown', resetSessionTimer);
     isEventListenerAdded = true;
 }
+

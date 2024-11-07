@@ -1,4 +1,3 @@
-import { Logger, LogLevel } from '@/utils/logger';
 import { User, UserProfile } from '@/models/User';
 import { db } from '@/database/db';
 import {
@@ -7,12 +6,13 @@ import {
     PasswordResetSchema,
     PasswordUpdateSchema
 } from '@/validators/userValidators';
-import bcrypt from 'bcryptjs'; // Consider using Web Workers for hashing in production
+import bcrypt from 'bcryptjs';
 import { ServiceWrapper } from '@/services/serviceWrapper';
 import { generateSecureToken } from '@/utils/tokenGenerator';
 import { Role, RolePermissions } from '@/models/Role';
 import { Permission } from '@/models/Permission';
 import { AuditService } from '@/services/auditService';
+import { Logger, LogLevel } from '@/utils/logger';
 
 interface LoginAttempt {
     count: number;
@@ -59,20 +59,34 @@ export class UserService {
                 10
             );
 
-            const newUser: User = {
+            const newUser: {
+                id?: number;
+                createdAt: Date;
+                password: string;
+                role: 'admin' | 'user';
+                email: string;
+                isEmailVerified: boolean;
+                username: string;
+                token: string;
+                updatedAt: Date;
+            } = {
                 username: parsedData.username,
                 email: parsedData.email,
                 password: hashedPassword,
                 role,
-                isEmailVerified: false,
+                isEmailVerified: requesterRole === 'admin', // Automatiquement vérifié pour admin
+                token: '', // Initialisé vide, sera généré lors de la connexion
                 createdAt: new Date(),
                 updatedAt: new Date()
             };
 
-            const id = await db.users.add(newUser);
+            const id = await db.users.add(<User>newUser);
             const createdUser = { ...newUser, id };
 
-            await this.sendEmailVerification(createdUser);
+            if (requesterRole !== 'admin') {
+                await this.sendEmailVerification(createdUser);
+            }
+
             await this.auditService.logAction(
                 id,
                 'Register',
@@ -91,9 +105,9 @@ export class UserService {
     /**
      * Logs in a user.
      * @param loginData - Credentials for login.
-     * @returns The logged-in user along with a token.
+     * @returns The logged-in user.
      */
-    async login(loginData: any): Promise<User & { token: string }> {
+    async login(loginData: { email: string; password: string }): Promise<User> {
         return await ServiceWrapper.executeService(async () => {
             const parsedData = UserLoginSchema.parse(loginData);
             const email = parsedData.email;
@@ -140,21 +154,25 @@ export class UserService {
 
             delete loginAttempts[email];
 
-            const token = generateSecureToken();
-            await db.users.update(user.id!, { passwordResetToken: token }); // Simulating a session token
-
             await this.auditService.logAction(
                 user.id!,
                 'Login',
                 `User logged in: ${user.email}`
             );
 
-            return { ...user, token };
+            // Génération du token
+            const token = generateSecureToken();
+            user.token = token;
+
+            // Mise à jour de l'utilisateur avec le token
+            await db.users.update(user.id!, { token, updatedAt: new Date() });
+
+            return user;
         }, 'UserService.login').then((response) => {
             if (response.error) {
                 throw new Error(response.error.message);
             }
-            return response.data as User & { token: string };
+            return response.data as User;
         });
     }
 

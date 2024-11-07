@@ -1,18 +1,20 @@
 import { Role } from './Role';
 export interface User {
-    id?: number; // Optionnel car auto-généré par Dexie.js
+    id?: number;
     username: string;
     email: string;
-    password: string; // Stocké sous forme hachée
-    role: Role; // Rôle de l'utilisateur
+    password: string;
+    role: Role;
     isEmailVerified: boolean;
     emailVerificationToken?: string;
     emailVerificationTokenExpiry?: Date;
-    passwordResetToken?: string; // Token pour la réinitialisation de mot de passe
-    passwordResetTokenExpiry?: Date; // Date d'expiration du token
+    passwordResetToken?: string;
+    passwordResetTokenExpiry?: Date;
+    profile?: UserProfile;
+
+    token: string;
     createdAt: Date;
     updatedAt: Date;
-    profile?: UserProfile;
 }
 
 export interface UserProfile {

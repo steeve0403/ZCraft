@@ -1,38 +1,51 @@
-@use '@/styles/variables' as *;
-@use '@/styles/mixins' as *;
+@use '@/styles/abstracts/variables' as *;
+@use '@/styles/abstracts/mixins' as *;
+
+/* src/components/layout/Header/Header.module.scss */
 
 .header {
-  @include flex-center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background-color: $background-color;
-  border-bottom: 1px solid $secondary-color;
-}
-
-.logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: $text-color;
-}
-
-.nav {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #343a40;
+  color: #fff;
 
-  a {
-    color: $text-color;
-    font-size: 1rem;
+  .logo a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
 
-    &:hover {
-      color: $primary-color;
+  .nav {
+    display: flex;
+    align-items: center;
+
+    a {
+      margin-left: 1.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+
+      &:hover {
+        color: #adb5bd;
+      }
+    }
+
+    .logoutButton {
+      margin-left: 1.5rem;
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #495057;
+      }
     }
   }
-
-  .logoutButton {
-    @include button-styles($secondary-color, #fff);
-    background: none;
-    padding: 0;
-    font-size: 1rem;
-  }
 }
-

@@ -1,13 +1,13 @@
-@use '@/styles/variables' as *;
+@use '@/styles/abstracts/variables' as *;
 
 .footer {
   text-align: center;
   padding: 1rem 0;
-  background-color: $background-color;
+  background-color: #5a6268;
   border-top: 1px solid $secondary-color;
 
   p {
     margin: 0;
-    color: $text-color;
+  color: #a0c5f1;
   }
 }

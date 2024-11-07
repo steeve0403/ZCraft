@@ -48,26 +48,41 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from '@/components/layout/Layout/Layout';
-import RegisterForm from '@/components/pages/Register/RegisterForm';
-import Home from '@/components/pages/Home/Home';
-import './styles/globals.scss';
+import RegisterForm from '@/pages/Register/RegisterForm';
+import Home from '@/pages/Home/Home';
+import './styles/main.scss';
+import { ThemeProvider } from '@/context/ThemeProvider';
 
 /**
  * Main application component that sets up routing.
  */
 export const App: React.FC = () => {
     return (
-        <Router>
-            <Layout>
-                <Suspense>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/register" element={<RegisterForm />} />
-                    </Routes>
-                </Suspense>
-            </Layout>
-        </Router>
+        <ThemeProvider>
+            <Router>
+                <Layout>
+                    <Suspense>
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+                            <Route
+                                path="/register"
+                                element={<RegisterForm />}
+                            />
+                        </Routes>
+                    </Suspense>
+                </Layout>
+            </Router>
+        </ThemeProvider>
     );
 };
 
 export default App;
+
+/*
+
+mkdir -p src/pages/About src/pages/Profile src/pages/NotFound src/pages/Admin
+touch src/pages/About.tsx src/pages/About.module.scss
+touch src/pages/Profile.tsx src/pages/Profile.module.scss
+touch src/pages/NotFound.tsx src/pages/NotFound.module.scss
+touch src/pages/Admin.tsx src/pages/Admin.module.scss
+ */

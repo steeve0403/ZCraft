@@ -1,3 +1,5 @@
+// src/components/layout/Header/Header.tsx
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
@@ -17,15 +19,8 @@ const Header: React.FC = () => {
                 {user ? (
                     <>
                         <Link to="/profile">Profile</Link>
-                        {hasPermission(Permission.MANAGE_USERS) && (
-                            <Link to="/admin/users">Admin</Link>
-                        )}
-                        <button
-                            onClick={logout}
-                            className={styles.logoutButton}
-                        >
-                            Logout
-                        </button>
+                        {hasPermission(Permission.MANAGE_USERS) && <Link to="/admin/users">Admin</Link>}
+                        <button onClick={logout} className={styles.logoutButton}>Logout</button>
                     </>
                 ) : (
                     <>
@@ -39,3 +34,5 @@ const Header: React.FC = () => {
 };
 
 export default Header;
+
+
