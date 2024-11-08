@@ -1,0 +1,49 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+
+.modalContent {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  position: relative;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  @include transition(transform 0.3s ease);
+
+  &.open {
+    transform: translateY(0);
+  }
+
+  &.closed {
+    transform: translateY(-100%);
+  }
+}
+
+.modalTitle {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: $dark-color;
+}
+
+.modalBody {
+  margin-bottom: 1rem;
+  color: #6c757d;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6c757d;
+
+  &:hover {
+    color: $danger-color;
+  }
+}

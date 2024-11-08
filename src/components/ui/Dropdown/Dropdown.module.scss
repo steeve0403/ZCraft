@@ -1,0 +1,43 @@
+/* src/components/UI/Dropdown/Dropdown.module.scss */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  &__button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+
+  &__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 0.5rem;
+    list-style: none;
+    padding: 0.5rem 0;
+    z-index: 1000;
+  }
+
+  &__item {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+/* src/styles/main.scss */
+
+// Import abstracts first
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/functions';
+
+//use base styles
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/base';
+
+//use component styles
+@use 'components/button';
+@use 'components/input';
+@use 'components/modal';
+
+//use layout styles
+@use 'layout/header';
+@use 'layout/footer';
+@use 'layout/sidebar';
+
+//use page styles
+@use 'pages/home';
+@use 'pages/about';
+@use 'pages/profile';
+
+//use theme styles
+@use 'themes/theme';
+
+// use vendor styles
+@use 'vendors/bootstrap';
+@use 'vendors/react-datepicker';

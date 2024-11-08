@@ -1,0 +1,20 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.profile {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: $dark-color;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    margin-bottom: 0.5rem;
+  }
+}

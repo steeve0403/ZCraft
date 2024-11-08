@@ -1,0 +1,38 @@
+/* src/components/UI/Tooltip/Tooltip.module.scss */
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+
+  &__content {
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+  }
+
+  &:hover &__content {
+    opacity: 1;
+    visibility: visible;
+  }
+}

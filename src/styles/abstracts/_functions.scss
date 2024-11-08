@@ -1,0 +1,9 @@
+/* src/styles/abstracts/_functions.scss */
+
+@function rem($px) {
+  @return #{$px / 16}rem;
+}
+
+@function rgba($color, $alpha) {
+  @return rgba($color, $alpha);
+}

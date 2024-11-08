@@ -1,0 +1,17 @@
+/* src/pages/Admin/AdminDashboard.module.scss */
+
+.adminDashboard {
+  display: flex;
+
+  &__content {
+    margin-left: 250px; /* Largeur de la sidebar */
+    padding: 2rem;
+    flex: 1;
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #343a40;
+    }
+  }
+}

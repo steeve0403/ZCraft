@@ -1,0 +1,31 @@
+@import "https://fonts.googleapis.com/css?family=Arvo:regular&display=swap&subset=latin";
+@import "https://fonts.googleapis.com/css?family=Arvo:italic&display=swap&subset=latin";
+@import "https://fonts.googleapis.com/css?family=Arvo:bold&display=swap&subset=latin";
+@import "https://fonts.googleapis.com/css?family=Libre+Franklin:medium&display=swap&subset=latin";
+@import "https://fonts.googleapis.com/css?family=Libre+Franklin:bold&display=swap&subset=latin";
+@import "https://fonts.googleapis.com/css?family=Libre+Franklin:regular&display=swap&subset=latin";
+@use '../abstracts/variables' as v;
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: v.$font-family;
+  font-weight: bold;
+  color: v.$dark-color;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem;
+  color: #6c757d;
+}
+
+a {
+  color: v.$primary-color;
+
+  &:hover {
+    color: darken(v.$primary-color, 10%);
+  }
+}
+
+button {
+  font-family: v.$font-family;
+}

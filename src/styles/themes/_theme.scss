@@ -1,0 +1,50 @@
+/* src/styles/themes/_theme.scss */
+
+// Thème Clair
+.theme--light {
+  --background-color: #ffffff;
+  --text-color: #343a40;
+  --primary-color: #007bff;
+  --primary-color-darkest: #0063cd;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+}
+
+// Thème Sombre
+.theme--dark {
+  --background-color: #343a40;
+  --text-color: #f8f9fa;
+  --primary-color: #17a2b8;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: var(--primary-color);
+
+  &:hover {
+    color: var(--primary-color-darkest);
+  }
+}
+
+.button--primary {
+  background-color: var(--primary-color);
+
+  &:hover {
+    background-color: var(--primary-color-darkest);
+  }
+}
+
+// Ajoutez d'autres variables selon les besoins

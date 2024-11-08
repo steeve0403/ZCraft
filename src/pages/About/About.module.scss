@@ -1,0 +1,19 @@
+/* src/pages/About/About.module.scss */
+
+.about {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #343a40;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    line-height: 1.6;
+  }
+}
