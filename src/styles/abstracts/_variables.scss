@@ -6,25 +6,55 @@
 @import "https://fonts.googleapis.com/css?family=Libre+Franklin:regular&display=swap&subset=latin";
 
 
-// Couleurs
-$primary-color: #007bff;
-$secondary-color: #6c757d;
-$success-color: #28a745;
-$danger-color: #dc3545;
-$warning-color: #ffc107;
-$info-color: #17a2b8;
-$light-color: #f8f9fa;
-$dark-color: #343a40;
+/* Spacing */
+$spacing-unit: 8px; // Base unit for spacing
+$spacing-scale: (
+        0: 0,
+        1: 0.5 * $spacing-unit, // 4px
+        2: 1 * $spacing-unit,   // 8px
+        3: 1.5 * $spacing-unit, // 12px
+        4: 2 * $spacing-unit,   // 16px
+        5: 3 * $spacing-unit,   // 24px
+        6: 4 * $spacing-unit // 32px
+);
 
-// Typographie
+/* Font Sizes */
+$font-sizes: (
+        xs: 0.75rem, // 12px
+        sm: 0.875rem, // 14px
+        md: 1rem,     // 16px
+        lg: 1.25rem,  // 20px
+        xl: 1.5rem,   // 24px
+        xxl: 2rem     // 32px
+);
 
-$font-family: 'Helvetica Neue', Arial, sans-serif;
-$font-size-base: 1rem;
-$line-height-base: 1.5;
+/* Breakpoints */
+$breakpoints: (
+        xsm-down: 320px,
+        xsm-up: 480px,
+        sm-down: 481px,
+        sm-up: 600px,
+        md-down: 601px,
+        md-up: 768px,
+        lg-down: 769px,
+        lg-up: 1024px,
+        xl-down: 1025px,
+        xl-up: 1440px
+);
 
-// Espacements
-$spacing-xs: 0.25rem;
-$spacing-sm: 0.5rem;
-$spacing-md: 1rem;
-$spacing-lg: 1.5rem;
-$spacing-xl: 3rem;
+/* Border Radius */
+$border-radius: 4px;
+$border-radius-lg: 8px;
+
+/* Transitions */
+$transition-duration: 0.3s;
+$transition-timing: ease;
+
+/* Font Families */
+$font-family-base: 'Libre Franklin', sans-serif;
+$font-family-heading: 'Arvo', serif;
+
+/* Font Weights */
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;

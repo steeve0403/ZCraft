@@ -1,9 +1,15 @@
-/* src/styles/abstracts/_functions.scss */
-
 @function rem($px) {
   @return #{$px / 16}rem;
 }
 
-@function rgba($color, $alpha) {
-  @return rgba($color, $alpha);
+//@function rgba($color, $alpha) {
+//  @return rgba($color, $alpha);
+//}
+
+@function get-map-value($map, $key) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  } @else {
+    @error "Key `#{$key}` not found in the provided map.";
+  }
 }

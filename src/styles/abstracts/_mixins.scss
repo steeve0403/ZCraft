@@ -1,26 +1,17 @@
-/* src/styles/abstracts/_mixins.scss */
+/* Responsive Font Size */
+@mixin responsive-font($min, $preferred, $max) {
+  font-size: clamp(#{$min}, #{$preferred}, #{$max});
+}
 
+/* Flexbox Centering */
 @mixin flex-center {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@mixin transition($properties, $duration: 0.3s, $timing: ease) {
-  transition: $properties $duration $timing;
+/* Box Shadow */
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
 }
 
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == small {
-    @media (max-width: 576px) { @content; }
-  }
-  @else if $breakpoint == medium {
-    @media (max-width: 768px) { @content; }
-  }
-  @else if $breakpoint == large {
-    @media (max-width: 992px) { @content; }
-  }
-  @else if $breakpoint == extra-large {
-    @media (max-width: 1200px) { @content; }
-  }
-}

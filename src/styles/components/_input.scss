@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use '../abstracts' as *;
+
 
 .input {
   display: flex;
@@ -9,7 +9,7 @@
   &__label {
     margin-bottom: 0.5rem;
     font-weight: 500;
-    color: $dark-color;
+    //color: $dark-color;
   }
 
   &__field {
@@ -17,20 +17,20 @@
     border: 1px solid #ced4da;
     border-radius: 4px;
     font-size: 1rem;
-    @include transition(border-color 0.3s ease);
+    //@include transition(border-color 0.3s ease);
 
     &:focus {
-      border-color: $primary-color;
+      //border-color: $primary-color;
       outline: none;
     }
 
     &--error {
-      border-color: $danger-color;
+      //border-color: $danger-color;
     }
   }
 
   &__error {
-    color: $danger-color;
+    //color: $danger-color;
     margin-top: 0.5rem;
     font-size: 0.875rem;
   }

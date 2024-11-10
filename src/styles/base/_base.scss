@@ -1,5 +1,71 @@
-/* src/styles/base/_base.scss */
+@use "../abstracts" as *;
 
-body {
-  padding-top: 4rem; // Ajustez selon la hauteur de votre header
+/* Links */
+a {
+  color: var(--color-primary);
+  transition: color $transition-duration ease;
+
+  &:hover {
+    color: var(--color-secondary);
+    text-decoration: underline;
+  }
+}
+
+/* Buttons */
+button {
+  display: inline-block;
+  padding: $spacing-unit $spacing-unit * 2;
+  border-radius: $border-radius;
+  font-family: $font-family-base;
+  font-weight: $font-weight-medium;
+  transition: background-color $transition-duration ease, color $transition-duration ease;
+  cursor: pointer;
+
+  &.primary {
+    background-color: var(--color-primary);
+    color: #fff;
+
+    &:hover {
+      //background-color: darken(var(--color-primary), 10%);
+      background-color: var(--color-secondary);
+    }
+
+    &:disabled {
+      //background-color: lighten(var(--color-primary), 30%);
+      background-color: var(--color-secondary);
+
+      cursor: not-allowed;
+    }
+  }
+
+  &.secondary {
+    background-color: var(--color-secondary);
+    color: #fff;
+
+    &:hover {
+      //background-color: darken(var(--color-secondary), 10%);
+      background-color: var(--color-secondary);
+    }
+
+    &:disabled {
+      //background-color: lighten(var(--color-secondary), 30%);
+      background-color: var(--color-secondary);
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utility Classes - Example */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: map-get($spacing-scale, 3);
+
 }

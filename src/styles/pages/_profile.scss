@@ -1,5 +1,5 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use "../abstracts" as *;
+
 
 .profile {
   max-width: 600px;
@@ -9,7 +9,7 @@
   h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: $dark-color;
+    //color: $dark-color;
   }
 
   p {

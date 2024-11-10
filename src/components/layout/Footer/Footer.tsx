@@ -1,15 +1,18 @@
 import React from 'react';
-import styles from './Footer.module.scss';
+import './Footer.module.scss';
+import Logo from '@/components/common/Logo/Logo';
 
-const Footer: React.FC = () => {
-    return (
-        <footer className={styles.footer}>
-            <p>
-                &copy; {new Date().getFullYear()} My Portfolio. All rights
-                reserved.
-            </p>
-        </footer>
-    );
-};
+
+const Footer = () => (
+    <footer className="footer">
+        <Logo />
+        &copy; {new Date().getFullYear()} MyApp. All rights reserved.
+        <div>
+            <a href="/privacy">Privacy Policy</a> |{' '}
+            <a href="/terms">Terms of Service</a>
+        </div>
+    </footer>
+);
 
 export default Footer;
+

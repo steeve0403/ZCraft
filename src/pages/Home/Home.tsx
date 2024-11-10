@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Home.module.scss';
-import Button from '@/components/ui/Button/Button';
+import Button from '@/components/common/Button/Button';
 
 const Home: React.FC = () => {
     return (

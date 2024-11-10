@@ -4,6 +4,7 @@ import React, { createContext, useState, ReactNode } from 'react';
 
 interface ErrorContextType {
     error: string | null;
+    // eslint-disable-next-line no-unused-vars
     setError: (error: string | null) => void;
 }
 
@@ -23,7 +24,7 @@ export const ErrorProvider: React.FC<{ children: ReactNode }> = ({
             {error && (
                 <div className="error-banner">
                     <p>{error}</p>
-                    <button onClick={() => setError(null)}>Fermer</button>
+                    <button onClick={() => setError(null)}>Close</button>
                 </div>
             )}
         </ErrorContext.Provider>

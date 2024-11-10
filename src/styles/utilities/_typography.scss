@@ -1,0 +1,151 @@
+@use '../abstracts/index' as *;
+
+/* Font Size Utilities */
+@each $size-name, $size-value in $font-sizes {
+  .fs-#{$size-name} {
+    font-size: $size-value;
+  }
+}
+
+/* Font Weight Utilities */
+@each $weight, $value in (regular: 400, medium: 500, bold: 700) {
+  .fw-#{$weight} {
+    font-weight: $value;
+  }
+}
+
+/* Text Alignment */
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Text Transformation */
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* Text Colors */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-secondary {
+  color: var(--color-secondary);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-neutral {
+  color: var(--color-neutral);
+}
+
+.text-error {
+  color: var(--color-error);
+}
+
+.text-success {
+  color: var(--color-success);
+}
+
+.text-info {
+  color: var(--color-info);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+/* Custom Typography Utilities */
+.text-main-title {
+  font-family: var(--font-main-title-family);
+  font-style: var(--font-main-title-style);
+  font-weight: var(--font-main-title-weight);
+  font-size: var(--font-main-title-size);
+  line-height: var(--font-main-title-line-height);
+}
+
+.text-primary-subtitle {
+  font-family: var(--font-primary-subtitle-family);
+  font-style: var(--font-primary-subtitle-style);
+  font-weight: var(--font-primary-subtitle-weight);
+  font-size: var(--font-primary-subtitle-size);
+  line-height: var(--font-primary-subtitle-line-height);
+}
+
+.text-secondary-subtitle {
+  font-family: var(--font-secondary-subtitle-family);
+  font-style: var(--font-secondary-subtitle-style);
+  font-weight: var(--font-secondary-subtitle-weight);
+  font-size: var(--font-secondary-subtitle-size);
+  line-height: var(--font-secondary-subtitle-line-height);
+}
+
+.text-body {
+  font-family: var(--font-body-text-family);
+  font-style: var(--font-body-text-style);
+  font-weight: var(--font-body-text-weight);
+  font-size: var(--font-body-text-size);
+  line-height: var(--font-body-text-line-height);
+}
+
+.text-quotes-keypoints {
+  font-family: var(--font-quotes-keypoints-family);
+  font-style: var(--font-quotes-keypoints-style);
+  font-weight: var(--font-quotes-keypoints-weight);
+  font-size: var(--font-quotes-keypoints-size);
+  line-height: var(--font-quotes-keypoints-line-height);
+}
+
+.text-main-navigation {
+  font-family: var(--font-main-navigation-family);
+  font-style: var(--font-main-navigation-style);
+  font-weight: var(--font-main-navigation-weight);
+  font-size: var(--font-main-navigation-size);
+  line-height: var(--font-main-navigation-line-height);
+}
+
+.text-primary-action-button {
+  font-family: var(--font-primary-action-buttons-family);
+  font-style: var(--font-primary-action-buttons-style);
+  font-weight: var(--font-primary-action-buttons-weight);
+  font-size: var(--font-primary-action-buttons-size);
+  line-height: var(--font-primary-action-buttons-line-height);
+}
+
+.text-secondary-action-button {
+  font-family: var(--font-secondary-action-buttons-family);
+  font-style: var(--font-secondary-action-buttons-style);
+  font-weight: var(--font-secondary-action-buttons-weight);
+  font-size: var(--font-secondary-action-buttons-size);
+  line-height: var(--font-secondary-action-buttons-line-height);
+}
+
+.text-caption {
+  font-family: var(--font-captions-additional-info-family);
+  font-style: var(--font-captions-additional-info-style);
+  font-weight: var(--font-captions-additional-info-weight);
+  font-size: var(--font-captions-additional-info-size);
+  line-height: var(--font-captions-additional-info-line-height);
+}

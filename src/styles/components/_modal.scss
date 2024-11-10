@@ -1,49 +1,59 @@
-@use '../abstracts/variables' as *;
-@use '../abstracts/mixins' as *;
+@use '../abstracts' as *;
 
 
-.modalContent {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 8px;
-  position: relative;
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-overlay);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition-duration ease, visibility $transition-duration ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: var(--modal-background);
+  border-radius: $border-radius-lg;
+  padding: map-get($spacing-scale, 3);
   width: 90%;
   max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  @include transition(transform 0.3s ease);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color $transition-duration ease, color $transition-duration ease;
 
-  &.open {
-    transform: translateY(0);
+  h3 {
+    margin-bottom: map-get($spacing-scale, 2);
+    font-size: var(--font-primary-subtitle-size);
   }
 
-  &.closed {
-    transform: translateY(-100%);
+  p {
+    margin-bottom: map-get($spacing-scale, 3);
+    font-size: var(--font-body-text-size);
+    line-height: var(--font-body-text-line-height);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: map-get($spacing-scale, 1);
+    right: map-get($spacing-scale, 1);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-primary);
   }
 }
 
-.modalTitle {
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: $dark-color;
-}
-
-.modalBody {
-  margin-bottom: 1rem;
-  color: #6c757d;
-}
-
-.modalClose {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #6c757d;
-
-  &:hover {
-    color: $danger-color;
-  }
-}

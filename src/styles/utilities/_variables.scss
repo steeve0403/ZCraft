@@ -1,0 +1,13 @@
+@use '../abstracts/index' as *;
+
+/* Breakpoints */
+$breakpoint-xsm-down: get-map-value($breakpoints, xsm-down);
+$breakpoint-xsm-up: get-map-value($breakpoints, xsm-up);
+$breakpoint-sm-down: get-map-value($breakpoints, sm-down);
+$breakpoint-sm-up: get-map-value($breakpoints, sm-up);
+$breakpoint-md-down: get-map-value($breakpoints, md-down);
+$breakpoint-md-up: get-map-value($breakpoints, md-up);
+$breakpoint-lg-down: get-map-value($breakpoints, lg-down);
+$breakpoint-lg-up: get-map-value($breakpoints, lg-up);
+$breakpoint-xl-down: get-map-value($breakpoints, xl-down);
+$breakpoint-xl-up: get-map-value($breakpoints, xl-up);

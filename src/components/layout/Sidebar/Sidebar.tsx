@@ -1,5 +1,3 @@
-// src/components/layout/Sidebar/Sidebar.tsx
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Sidebar.module.scss';

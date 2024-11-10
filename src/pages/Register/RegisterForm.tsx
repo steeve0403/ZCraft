@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './RegisterForm.module.scss';
-import Input from '@/components/ui/Input/Input';
-import Button from '@/components/ui/Button/Button';
+import Input from '@/components/common/Input/Input';
+import Button from '@/components/common/Button/Button';
 import { useAuth } from '@/hooks/useAuth';
 
 const RegisterForm: React.FC = () => {
