@@ -1,46 +1,47 @@
-/* src/components/common/Button/Button.module.scss */
+@use '../../../styles/abstracts' as *;
 
 .button {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  @include button();
 
   &--primary {
-    background-color: #007bff;
-    color: #fff;
-
-    &:hover {
-      background-color: #0056b3;
-    }
-
-    &:disabled {
-      background-color: #a0c5f1;
-      cursor: not-allowed;
-    }
+    @include button('primary');
   }
 
   &--secondary {
-    background-color: #6c757d;
-    color: #fff;
-
-    &:hover {
-      background-color: #5a6268;
-    }
-
-    &:disabled {
-      background-color: #c0c4c7;
-      cursor: not-allowed;
-    }
+    @include button('secondary');
   }
 
-  &__icon {
-    margin-right: 0.5rem;
-    display: flex;
-    align-items: center;
+  &--accent {
+    @include button('accent');
+  }
+
+  &--sm {
+    padding: map-get($spacing-scale, 'xs') map-get($spacing-scale, 'sm');
+    font-size: map-get($font-sizes, 'sm');
+  }
+
+  &--md {
+    padding: map-get($spacing-scale, 'sm') map-get($spacing-scale, 'md');
+    font-size: map-get($font-sizes, 'md');
+  }
+
+  &--lg {
+    padding: map-get($spacing-scale, 'md') map-get($spacing-scale, 'lg');
+    font-size: map-get($font-sizes, 'lg');
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  @include respond('md') {
+    /* Styles pour les écrans de taille md et plus */
+    font-size: map-get($font-sizes, 'lg');
+  }
+
+  @include respond('sm') {
+    /* Styles pour les écrans de taille sm et plus */
+    font-size: map-get($font-sizes, 'md');
   }
 }

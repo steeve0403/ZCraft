@@ -1,9 +1,9 @@
 
-@use '@styles/abstracts';
-@use '@styles/base';
-@use '@styles/components';
-@use '@styles/layout';
-@use '@styles/pages';
-@use '@styles/themes';
-@use '@styles/utilities';
-//@use '@styles/vendors';
+@use 'abstracts' as *;
+@use 'base' as *;
+@use 'layout' as *;
+@use 'themes' as *;
+@use 'components' as *;
+@use 'pages' as *;
+@use 'utilities' as *;
+

@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": [true, {
+      "ignoreAtRules": [
+        "use",
+        "forward",
+        "mixin",
+        "include"
+      ]
+    }],
+    "scss/at-rule-no-unknown": true,
+    "no-duplicate-selectors": true,
+    "no-empty-source": null
+  }
+}

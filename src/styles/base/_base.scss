@@ -1,4 +1,6 @@
-@use "../abstracts" as *;
+@use "../abstracts/index" as *;
+@use "../themes" as *;
+@use 'sass:map';
 
 /* Links */
 a {
@@ -9,12 +11,14 @@ a {
     color: var(--color-secondary);
     text-decoration: underline;
   }
+
+
 }
 
 /* Buttons */
 button {
   display: inline-block;
-  padding: $spacing-unit $spacing-unit * 2;
+  padding: map.get($spacing-scale, 0) map.get($spacing-scale, 3);
   border-radius: $border-radius;
   font-family: $font-family-base;
   font-weight: $font-weight-medium;

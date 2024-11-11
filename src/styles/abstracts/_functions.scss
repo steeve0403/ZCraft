@@ -2,14 +2,35 @@
   @return #{$px / 16}rem;
 }
 
-//@function rgba($color, $alpha) {
-//  @return rgba($color, $alpha);
-//}
-
 @function get-map-value($map, $key) {
   @if map-has-key($map, $key) {
     @return map-get($map, $key);
   } @else {
     @error "Key `#{$key}` not found in the provided map.";
+  }
+}
+
+@function adjust-color($color, $amount: 10%) {
+  @return darken($color, $amount);
+}
+
+@function adjust-brightness($color, $percentage) {
+  @if ($percentage > 0) {
+    @return lighten($color, $percentage);
+  } @else {
+    @return darken($color, abs($percentage));
+  }
+}
+
+@function rem-to-px($rem-value) {
+  $base-font-size: 16px; // Taille de police par défaut du navigateur
+  @return $rem-value * $base-font-size;
+}
+
+@function map-get-with-fallback($map, $key, $fallback: null) {
+  @if map-has-key($map, $key) {
+    @return map-get($map, $key);
+  } @else {
+    @return $fallback;
   }
 }

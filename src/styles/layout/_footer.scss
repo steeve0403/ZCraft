@@ -1,22 +1,9 @@
-@use "../abstracts" as *;
-@use "sass:map";
-
-/* Footer Styles */
 .footer {
+  width: 100%;
+  padding: var(--spacing-unit) * 2;
   background-color: var(--color-neutral);
-  color: var(--text-secondary);
-  padding: map.get($spacing-scale, 3);
   text-align: center;
-  font-size: map.get($font-sizes, xs);
-  transition: background-color $transition-duration ease, color $transition-duration ease;
-
-  a {
-    color: var(--color-primary);
-    margin: 0 0.5rem;
-    transition: color $transition-duration ease;
-
-    &:hover {
-      color: var(--color-secondary);
-    }
-  }
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
 }
+

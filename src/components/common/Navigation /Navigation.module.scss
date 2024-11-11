@@ -1,0 +1,26 @@
+@use 'sass:map';
+@use '@/styles/abstracts' as *;
+
+.navigation ul {
+  display: flex;
+  gap: map.get($spacing-scale, 3);
+}
+
+.navigation li a {
+  font-size: map.get($font-sizes, md);
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  @include transition(color);
+
+  &:hover {
+    color: var(--color-accent);
+  }
+
+  &.text-accent {
+    color: var(--color-accent);
+  }
+
+  &.text-white {
+    color: var(--text-primary);
+  }
+}

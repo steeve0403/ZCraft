@@ -1,17 +1,77 @@
-/* Responsive Font Size */
-@mixin responsive-font($min, $preferred, $max) {
-  font-size: clamp(#{$min}, #{$preferred}, #{$max});
+@use 'sass:map';
+@use 'sass:meta';
+
+/* Mixin pour les Effets Glass */
+@mixin glass-effect($bg-color: map-get($colors, 'background'), $blur: 10px, $border-color: map-get($colors, 'border')) {
+  background: $bg-color;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border-color;
 }
 
-/* Flexbox Centering */
-@mixin flex-center {
+/* Mixin pour les Boutons */
+@mixin button($variant: 'primary') {
+  $bg-color: map-get($component-colors, 'button-#{$variant}-bg');
+  $text-color: map-get($colors, 'text-light');
+
+  @include glass-effect($bg-color);
+
+  color: $text-color;
+  padding: map-get($spacing-scale, 'sm') map-get($spacing-scale, 'md');
+  border-radius: $border-radius;
+  font-size: map-get($font-sizes, 'md');
+  font-weight: map-get($font-weights, 'medium');
+  font-family: $font-family-base;
+  cursor: pointer;
+  transition: map-get($transitions, 'default');
+
+  &:hover {
+    background: adjust-brightness($bg-color, -10%);
+  }
+}
+
+/* Mixin pour les Inputs */
+@mixin input-field {
+  @include glass-effect(map-get($component-colors, 'input-bg'));
+  padding: map-get($spacing-scale, 'sm') map-get($spacing-scale, 'md');
+  border-radius: $border-radius-sm;
+  font-size: map-get($font-sizes, 'md');
+  font-family: $font-family-base;
+  color: map-get($colors, 'text');
+  border: 1px solid map-get($component-colors, 'input-border');
+  transition: map-get($transitions, 'default');
+
+  &:focus {
+    border-color: map-get($colors, 'primary');
+    outline: none;
+  }
+}
+
+/* Mixin pour les Cartes */
+@mixin card {
+  @include glass-effect(map-get($component-colors, 'card-bg'));
+  padding: map-get($spacing-scale, 'lg');
+  border-radius: $border-radius-lg;
+  box-shadow: map-get($box-shadows, 'medium');
+}
+
+/* Mixin pour les Media Queries */
+@mixin respond($breakpoint) {
+  $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+  @if $breakpoint-value {
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' not found in \$breakpoints map.";
+  }
+}
+
+/* Mixin pour l'Alignement Flex */
+@mixin flex-center($direction: row) {
   display: flex;
+  flex-direction: $direction;
   justify-content: center;
   align-items: center;
 }
-
-/* Box Shadow */
-@mixin box-shadow($shadow) {
-  box-shadow: $shadow;
-}
-

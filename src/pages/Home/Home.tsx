@@ -1,13 +1,12 @@
 import React from 'react';
 import styles from './Home.module.scss';
-import Button from '@/components/common/Button/Button';
 
 const Home: React.FC = () => {
+
+
     return (
-        <div className={styles.home}>
-            <h1>Welcome to My Portfolio</h1>
-            <p>Explore my projects and get to know more about me.</p>
-            <Button variant="primary">View Projects</Button>
+        <div className="main u-flex-center u-text-center">
+            <h1>Bienvenue dans mon application</h1>
         </div>
     );
 };

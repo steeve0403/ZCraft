@@ -1,5 +1,3 @@
-// src/context/ErrorContext.tsx
-
 import React, { createContext, useState, ReactNode } from 'react';
 
 interface ErrorContextType {

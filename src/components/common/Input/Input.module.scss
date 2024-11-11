@@ -1,35 +1,6 @@
-/* src/components/common/Input/Input.module.scss */
+@use '../../../styles/abstracts' as *;
 
 .input {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-
-  &__label {
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-  }
-
-  &__field {
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-
-    &:focus {
-      border-color: #80bdff;
-      outline: none;
-    }
-
-    &--error {
-      border-color: #dc3545;
-    }
-  }
-
-  &__error {
-    color: #dc3545;
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-  }
+  @include input-field;
+  width: 100%;
 }

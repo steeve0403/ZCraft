@@ -50,7 +50,11 @@ export default defineConfig({
             scss: {
                 api: 'modern-compiler',
                 // Inclure automatiquement les variables et mixins SCSS dans chaque fichier SCSS
-                // additionalData: `@import "@/styles/variables.scss"; @import "@/styles/mixins.scss";`,
+                additionalData: `
+                @use "@/styles/abstracts/_variables.scss"; 
+                @use "@/styles/abstracts/_mixins.scss";
+                @use "@/styles/abstracts/_functions.scss";
+                `,
             }
         },
         modules: {

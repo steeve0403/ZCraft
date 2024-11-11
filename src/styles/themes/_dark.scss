@@ -1,38 +1,7 @@
-@use "../abstracts" as *;
+/* src/styles/themes/_dark.scss */
 
-
-/* Dark Theme Variables */
 .dark-theme {
-  /* Colors */
-  --color-primary: #4caf50;      /* Vivid Green */
-  --color-secondary: #2196f3;    /* Vivid Blue */
-  --color-accent: #ff9800;       /* Vivid Orange */
-  --color-neutral: #1e1e1e;      /* Very Dark Gray */
-  --color-error: #f44336;        /* Vivid Red */
-  --color-success: #8bc34a;      /* Light Vivid Green */
-  --color-info: #00bcd4;         /* Vivid Cyan */
-  --color-warning: #ffeb3b;      /* Vivid Yellow */
-
-  /* Backgrounds */
-  --background-primary: #121212;        /* Slightly Tinted Black */
-  --background-surface: #1e1e1e;        /* Very Dark Gray */
-  --modal-background: #1e1e1e;
-  --modal-overlay: rgba(0, 0, 0, 0.7);
-
-  /* Text Colors */
-  --text-primary: #e0e0e0;              /* Light Gray */
-  --text-secondary: #b0b0b0;            /* Medium Gray */
-  --text-disabled: #7a7a7a;             /* Dark Gray */
-
-  /* Border Colors */
-  --border-color: #333333;              /* Dark Gray */
-
-  /* Shadows */
-  --shadow-color: rgba(0, 0, 0, 0.7);
-
-  /* Links */
-  --color-light: #ffffff;
-
-  /* Modal */
-  --color-neutral: #2c2c2c;
+  --color-background: rgba(0, 0, 0, 0.6);
+  --color-text: #f1faee;
+  --color-border: rgba(255, 255, 255, 0.1);
 }

@@ -1,24 +1,21 @@
-// src/components/common/Button/Button.tsx
-
 import React from 'react';
 import styles from './Button.module.scss';
 
 interface ButtonProps {
     label: string;
     onClick: () => void;
-    variant?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'accent';
+    size?: 'sm' | 'md' | 'lg';
     disabled?: boolean;
-    icon?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ label, onClick, variant = 'primary', disabled = false, icon }) => {
+const Button: React.FC<ButtonProps> = ({ label, onClick, variant = 'primary', size = 'md', disabled = false }) => {
     return (
         <button
-            className={`${styles.button} ${styles[`button--${variant}`]}`}
+            className={`${styles.button} ${styles[`button--${variant}`]} ${styles[`button--${size}`]}`}
             onClick={onClick}
             disabled={disabled}
         >
-            {icon && <span className={styles.button__icon}>{icon}</span>}
             {label}
         </button>
     );
