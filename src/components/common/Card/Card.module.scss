@@ -1,6 +1,0 @@
-@use '../../../styles/abstracts' as *;
-
-.card {
-  @include card;
-  color: map-get($colors, 'text');
-}

@@ -1,21 +1,28 @@
-import React from 'react';
-import styles from './Toggle.module.scss';
+import React, { useContext } from 'react';
+// import './ThemeToggle.scss';
+import { ThemeContext } from '@/context/ThemeProvider';
 
-interface ToggleProps {
-    isDarkMode: boolean;
-    onToggle: () => void;
-}
 
-const Toggle: React.FC<ToggleProps> = ({ isDarkMode, onToggle }) => {
+const ThemeToggle: React.FC = () => {
+    const { theme, toggleTheme, setTheme } = useContext(ThemeContext);
+
+    const handleThemeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setTheme(event.target.value);
+    };
+
     return (
-        <button
-            className={`${styles.toggleButton} bg-secondary text-white p-2 rounded`}
-            onClick={onToggle}
-            aria-label="Toggle Dark Mode"
-        >
-            {isDarkMode ? '🌞 Light' : '🌙 Dark'}
-        </button>
+        <div className="theme-toggle-container">
+            <button className="theme-toggle" onClick={toggleTheme}>
+                {theme === 'light' ? '🌙 Mode Sombre' : theme === 'dark' ? '🌈 Mode Pastel' : '☀️ Mode Clair'}
+            </button>
+            <select value={theme} onChange={handleThemeChange} className="theme-selector">
+                <option value="light">Clair</option>
+                <option value="dark">Sombre</option>
+                <option value="pastel">Pastel</option>
+                {/* Ajoute d'autres thèmes ici */}
+            </select>
+        </div>
     );
 };
 
-export default Toggle;
+export default ThemeToggle;

@@ -1,51 +1,36 @@
-// src/components/Header/Header.tsx
-
-import React, { useContext } from 'react';
-import Logo from '../../common/Logo/Logo';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { ThemeContext } from '@/context/themeContext';
-import Toggle from '@/components/common/Toggle/Toggle';
 
 const Header: React.FC = () => {
-    const { theme, toggleTheme } = useContext(ThemeContext);
-
     return (
-        <header
-            className={`${styles.header} bg-primary text-white p-2 d-flex justify-between items-center`}
-        >
-            <Logo />
-            <Toggle isDarkMode={theme === 'dark'} onToggle={toggleTheme} />
+        <header className={styles.header}>
+            <div className={`${styles.header__container} container`}>
+                <div className={styles.header__logo}>
+                    MonLogo
+                </div>
+                <nav className={styles.header__nav}>
+                    <ul>
+                        <li>
+                            <NavLink to="/">
+                                Accueil
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/about">
+                                À Propos
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contact">
+                                Contact
+                            </NavLink>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
     );
 };
 
 export default Header;
-
-
-
-{/*<header className={styles.header}>*/}
-{/*    <div className={styles.logo}>*/}
-{/*        <Link to="/">My Portfolio</Link>*/}
-{/*    </div>*/}
-{/*    <nav className={styles.nav}>*/}
-{/*        <Link to="/projects">Projects</Link>*/}
-{/*        {user ? (*/}
-{/*            <>*/}
-{
-    /*                <Link to="/profile">Profile</Link>*/
-}
-{
-    /*                {hasPermission(Permission.MANAGE_USERS) && <Link to="/admin/users">Admin</Link>}*/
-}
-{
-    /*                <button onClick={logout} className={styles.logoutButton}>Logout</button>*/
-}
-{/*            </>*/}
-{/*        ) : (*/}
-{/*            <>*/}
-{/*                <Link to="/login">Login</Link>*/}
-{/*                <Link to="/register">Register</Link>*/}
-{/*            </>*/}
-{/*        )}*/}
-{/*    </nav>*/}
-{/*</header>*/}

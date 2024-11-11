@@ -1,9 +1,0 @@
-@use '@/styles/abstracts' as *;
-.toggleButton {
-  cursor: pointer;
-  @include transition(background-color, color);
-
-  &:hover {
-    background-color: var(--color-accent);
-  }
-}
