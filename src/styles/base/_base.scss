@@ -1,0 +1,25 @@
+body {
+  font-family: var(--font-primary);
+  color: var(--color-neutral-dark);
+  background-color: var(--color-neutral-light);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed) ease;
+
+  &:hover {
+    color: var(--color-primary-variant);
+    text-decoration: underline;
+  }
+}
+
+button {
+  font-family: var(--font-primary);
+}
+
+input, textarea, select, button {
+  font-family: var(--font-primary);
+}

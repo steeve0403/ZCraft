@@ -1,0 +1,109 @@
+// src/styles/abstracts/_variables.scss
+
+:root {
+  /* ==================================================
+     Thème Clair (Défaut)
+  ================================================== */
+  /* Couleurs Primaires */
+  --color-primary: #A8D5E2;
+  --color-primary-variant: #7FBAC1;
+  --color-primary-tint: #D1EEF4;
+
+  /* Couleurs Secondaires */
+  --color-secondary: #F7C6C7;
+  --color-secondary-variant: #E69FA0;
+  --color-secondary-tint: #FBE5E6;
+
+  /* Couleurs d'Accent */
+  --color-accent: #FFD3B6;
+  --color-accent-variant: #FFB482;
+  --color-accent-tint: #FFE3CC;
+
+  /* Couleurs Neutres */
+  --color-neutral-light: #F5F5F5;
+  --color-neutral-medium: #CCCCCC;
+  --color-neutral-dark: #333333;
+
+  /* Couleurs d'État */
+  --color-success: #A3D9A5;
+  --color-error: #E57373;
+  --color-warning: #FFCC80;
+
+  /* Typographie */
+  --font-primary: 'Libre Franklin', sans-serif;
+  --font-important: 'Arvo', serif;
+
+  /* Autres Variables */
+  --border-radius: 4px;
+  --transition-speed: 0.3s;
+}
+
+/* ==================================================
+   Thème Sombre
+================================================== */
+[data-theme="dark"] {
+  /* Couleurs Primaires */
+  --color-primary: #7FBAC1;
+  --color-primary-variant: #5F99A3;
+  --color-primary-tint: #B2D9E7;
+
+  /* Couleurs Secondaires */
+  --color-secondary: #E69FA0;
+  --color-secondary-variant: #C67880;
+  --color-secondary-tint: #F0BEC3;
+
+  /* Couleurs d'Accent */
+  --color-accent: #FFB482;
+  --color-accent-variant: #E69B60;
+  --color-accent-tint: #FFD2BA;
+
+  /* Couleurs Neutres */
+  --color-neutral-light: #2C3E50;
+  --color-neutral-medium: #34495E;
+  --color-neutral-dark: #ECF0F1;
+
+  /* Couleurs d'État */
+  --color-success: #27AE60;
+  --color-error: #C0392B;
+  --color-warning: #F39C12;
+
+  /* Typographie */
+  --font-primary: 'Libre Franklin', sans-serif;
+  --font-important: 'Arvo', serif;
+}
+
+/* ==================================================
+   Thème Pastel
+================================================== */
+[data-theme="pastel"] {
+  /* Couleurs Primaires */
+  --color-primary: #FFB3BA;
+  --color-primary-variant: #FF8A9D;
+  --color-primary-tint: #FFCDD2;
+
+  /* Couleurs Secondaires */
+  --color-secondary: #BFD8B8;
+  --color-secondary-variant: #9DC1A2;
+  --color-secondary-tint: #C7E9C0;
+
+  /* Couleurs d'Accent */
+  --color-accent: #FFDFBA;
+  --color-accent-variant: #FFC299;
+  --color-accent-tint: #FFE5CC;
+
+  /* Couleurs Neutres */
+  --color-neutral-light: #FFFFFF;
+  --color-neutral-medium: #F0F0F0;
+  --color-neutral-dark: #333333;
+
+  /* Couleurs d'État */
+  --color-success: #A3D9A5;
+  --color-error: #E57373;
+  --color-warning: #FFCC80;
+
+  /* Typographie */
+  --font-primary: 'Libre Franklin', sans-serif;
+  --font-important: 'Arvo', serif;
+}
+
+
