@@ -1,44 +1,27 @@
-// src/context/ThemeContext.tsx
-import React, { createContext, useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from 'react';
+import { ThemeContext, Theme } from './ThemeContext';
 
-interface ThemeContextProps {
-    theme: string;
-    setTheme: (theme: string) => void;
-    toggleTheme: () => void;
-}
-
-export const ThemeContext = createContext<ThemeContextProps>({
-    theme: 'light',
-    setTheme: () => {},
-    toggleTheme: () => {},
-});
-
-interface ThemeProviderProps {
-    children: ReactNode;
-}
-
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
-    const [theme, setThemeState] = useState<string>('light');
+const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+    const [theme, setTheme] = useState<Theme>(() => {
+        const storedTheme = localStorage.getItem('theme') as Theme;
+        return storedTheme || 'theme-default';
+    });
 
     useEffect(() => {
-        document.documentElement.setAttribute('data-theme', theme);
+        // Remove all theme classes
+        document.documentElement.classList.remove(
+            'theme-default',
+            'theme-dark',
+            'theme-ocean'
+        );
+        // Add the current theme class if not default
+        if (theme !== 'theme-default') {
+            document.documentElement.classList.add(theme);
+        }
+        localStorage.setItem('theme', theme);
     }, [theme]);
 
-    const setTheme = (newTheme: string) => {
-        setThemeState(newTheme);
-    };
-
-    const toggleTheme = () => {
-        setTheme((prevTheme) => {
-            if (prevTheme === 'light') return 'dark';
-            if (prevTheme === 'dark') return 'pastel';
-            return 'light';
-        });
-    };
-
-    return (
-        <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
-            {children}
-        </ThemeContext.Provider>
-    );
+    return <ThemeContext.Provider value={{ theme, setTheme }}>{children}</ThemeContext.Provider>;
 };
+
+export default ThemeProvider;

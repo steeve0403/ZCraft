@@ -8,7 +8,8 @@ import {
 import Layout from '@/components/layout/Layout/Layout';
 import RegisterForm from '@/pages/Register/RegisterForm';
 import Home from '@/pages/Home/Home';
-import { ThemeProvider } from '@/context/ThemeProvider';
+import ThemeProvider from '@/context/ThemeProvider';
+import About from '@/pages/About/About';
 
 /**
  * Main application component that sets up routing.
@@ -20,11 +21,9 @@ export const App: React.FC = () => {
                 <Layout>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
-                            <Route path="/" element={<Navigate to="/home" replace />} />
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/register" element={<RegisterForm />} />
-                            {/* Ajoutez d'autres routes ici */}
-                            <Route path="*" element={<h1>404 - Not Found</h1>} />
+                            <Route path="/" Component={Home} />
+                            <Route path="/about" Component={About} />
+                            {/* Other routes */}
                         </Routes>
                     </Suspense>
                 </Layout>

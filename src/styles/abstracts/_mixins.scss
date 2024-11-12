@@ -1,0 +1,205 @@
+// ==============================================
+// Mixins
+// Contains reusable mixins for the project
+// ==============================================
+
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:color';
+@use '../abstracts/functions' as *;
+@use '../abstracts/variables' as *;
+
+// 1. Responsive Mixins
+// ---------------------
+
+/// Mixin for media queries going up (min-width).
+/// @param {String} $breakpoint - The breakpoint key.
+@mixin respond-up($breakpoint) {
+  @media (min-width: get-breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+/// Mixin for media queries going down (max-width).
+/// @param {String} $breakpoint - The breakpoint key.
+@mixin respond-down($breakpoint) {
+  @media (max-width: get-breakpoint($breakpoint)) {
+    @content;
+  }
+}
+
+// 2. Font Style
+// --------------
+
+/// Mixin for setting responsive font styles.
+/// @param {String} $size - The font size key.
+/// @param {String} $weight - The font weight key.
+/// @param {String} $family - The font family key (optional).
+/// @param {String} $line-height - The line-height key (optional).
+/// @param {String} $letter-spacing - The letter-spacing key (optional).
+@mixin font-style(
+  $size,
+  $weight,
+  $family: 'primary',
+  $line-height: null,
+  $letter-spacing: null
+) {
+  font-size: get-font-size($size);
+  font-weight: get-font-weight($weight);
+  font-family: get-font-family($family);
+
+  @if $line-height != null {
+    line-height: map.get($line-heights, $line-height);
+  }
+
+  @if $letter-spacing != null {
+    letter-spacing: map.get($letter-spacings, $letter-spacing);
+  }
+
+  // Responsive adjustments
+  @include respond-down('sm') {
+    font-size: get-responsive-font-size($size, 'sm');
+  }
+
+  @include respond-up('lg') {
+    font-size: get-responsive-font-size($size, 'lg');
+  }
+}
+
+// 3. Transition
+// --------------
+
+/// Mixin for adding transition effects.
+/// @param {Number} $duration - The duration in seconds.
+/// @param {String} $timing - The timing function.
+/// @param {List} $properties - The properties to transition.
+@mixin transition($duration: 0.3s, $timing: ease-in-out, $properties...) {
+  $props: '';
+  @each $property in $properties {
+    $props: '#{$props}, #{$property}';
+  }
+  $props: str-slice($props, 3); // Remove leading comma and space
+  transition: $props $duration $timing;
+}
+
+// 4. Glassmorphism
+// -----------------
+
+/// Mixin for applying glassmorphism effect.
+/// @param {Color} $background - Background color (default: translucent background).
+/// @param {Number} $blur - Blur amount (default: 10px).
+/// @param {Color} $border-color - Border color (default: translucent border).
+@mixin glassmorphism(
+  $background: var-css('color-background-translucent'),
+  $blur: 10px,
+  $border-color: var-css('color-glass-highlight'),
+  $box-shadow-color: var-css('color-glass-shadow')
+) {
+  background: $background;
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border: 1px solid $border-color;
+  box-shadow: 0 4px 30px $box-shadow-color;
+
+  @supports not (backdrop-filter: blur(0)) {
+    background: $background;
+  }
+}
+
+
+// 5. Container
+// -------------
+
+/// Mixin for setting a responsive container.
+@mixin container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: get-spacing('md');
+  padding-left: get-spacing('md');
+  width: 100%;
+  max-width: 1140px;
+
+  @include respond-up('sm') {
+    max-width: 540px;
+  }
+  @include respond-up('md') {
+    max-width: 720px;
+  }
+  @include respond-up('lg') {
+    max-width: 960px;
+  }
+  @include respond-up('xl') {
+    max-width: 1140px;
+  }
+  @include respond-up('xxl') {
+    max-width: 1320px;
+  }
+}
+
+// 6. Button Styles
+// -----------------
+
+/// Mixin for button styles.
+/// @param {String} $variant - The button variant (primary, secondary, etc.).
+@mixin button($variant: 'primary') {
+  padding: get-spacing('sm') get-spacing('md');
+  border: none;
+  border-radius: get-border-radius('md');
+  cursor: pointer;
+  font-size: get-font-size('md');
+  background-color: var-css('color-primary');
+  color: var-css('color-background');
+  @include transition(background-color, color);
+
+  &:hover {
+    background-color: var-css('color-primary-dark');
+  }
+}
+
+// 7. List Reset
+// -------------
+
+/// Mixin to reset list styles.
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// 8. Visually Hidden
+// ------------------
+
+/// Mixin to visually hide an element while keeping it accessible.
+@mixin visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+// 9. Flex Center
+// ---------------
+
+/// Mixin to center elements using flexbox.
+@mixin flex-center($direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+}
+
+
+// 10. Text Truncation
+// --------------------
+
+/// Mixin to truncate text with ellipsis.
+/// @param {Number} $lines - Number of lines to display (default: 1).
+@mixin text-truncate($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+

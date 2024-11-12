@@ -1,0 +1,19 @@
+@use 'sass:map';
+@use '../../../styles/abstracts' as *;
+
+.themeToggle {
+  .themeSelect {
+    padding: get-spacing('xs') get-spacing('sm');
+    border: 1px solid var(--color-neutral-dark);
+    border-radius: map.get($border-radius, 'sm');
+    background-color: var(--color-background);
+    color: var(--color-text);
+    @include transition(border-color, background-color, color);
+
+    &:focus {
+      border-color: var(--color-primary);
+      outline: none;
+    }
+  }
+}
+

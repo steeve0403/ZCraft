@@ -1,22 +1,23 @@
 
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
-@import 'abstracts/functions';
-@import 'abstracts/globals';
+// Import abstracts and utilities
+@use 'abstracts';
 
-@import 'base/reset';
-@import 'base/typography';
-@import 'base/base';
+// Import theme styles
+@use 'themes';
 
-@import 'layout/header';
-@import 'layout/footer';
-@import 'layout/grid';
-@import 'layout/sidebar';
+// Import base styles
+@use 'base';
 
-@import 'components/button';
-@import 'components/card';
-@import 'components/modal';
-@import 'components/toggle';
-@import 'pages/home';
-@import 'pages/about';
+// Import layout styles
+@use 'layout';
+
+// Import component styles
+@use 'components';
+
+
+
+
+// Import page-specific styles if any
+@use 'pages/home';
+@use 'pages/about';
 

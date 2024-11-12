@@ -1,0 +1,44 @@
+@use '../../../styles/abstracts' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-background);
+
+  // If you want the entire layout to have the glass effect
+  // Uncomment the line below
+  // @include glassmorphism();
+}
+
+.contentWrapper {
+  display: flex;
+  flex: 1;
+
+  @include respond-down('md') {
+    flex-direction: column;
+  }
+}
+
+.mainContent {
+  flex: 1;
+  padding: get-spacing('lg');
+  background-color: var(--color-background-translucent);
+  color: var(--color-text);
+  overflow: auto;
+
+  // Apply glassmorphism effect
+  @include glassmorphism();
+
+  // Apply default font styles
+  @include font-style('md', 'regular', 'primary', 'normal');
+
+  @include respond-down('md') {
+    padding: get-spacing('md');
+  }
+}
+
+// If needed, style the sidebar container here
+// .sidebar {
+//   // Styles specific to the sidebar in the layout
+// }

@@ -1,30 +1,52 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
+import styles from './NavItem.module.scss';
 
-interface NavItemProps {
+// Interface for sub-links with an optional icon
+interface SubLink {
+    to: string;
     label: string;
-    href: string;
-    isActive?: boolean;
+    icon?: React.ReactNode; // Optional icon for each sub-link
 }
 
-const NavItem: React.FC<NavItemProps> = ({ label, href, isActive = false }) => {
-    return (
-        <a
-            href={href}
-            className={`nav-item ${isActive ? 'active' : ''}`}
-            style={styles.link}
-        >
-            {label}
-        </a>
-    );
-};
+// Interface for the main NavItem component props with an optional icon
+interface NavItemProps {
+    to: string;
+    label: string;
+    icon?: React.ReactNode; // Optional icon for the main link
+    subLinks?: SubLink[];
+}
 
-const styles = {
-    link: {
-        textDecoration: 'none',
-        color: '#333',
-        padding: '0.5rem 1rem',
-        fontWeight: 500,
-    },
+const NavItem: React.FC<NavItemProps> = ({ to, label, icon, subLinks }) => {
+    // Utility function to apply the active class to links
+    const getNavLinkClass = ({ isActive }: { isActive: boolean }) =>
+        isActive ? `${styles.active}` : undefined;
+
+    return (
+        <li className={styles.navItem}>
+            <NavLink to={to} className={getNavLinkClass}>
+                {icon && <span className={styles.icon}>{icon}</span>}
+                <span className={styles.label}>{label}</span>
+            </NavLink>
+            {subLinks && subLinks.length > 0 && (
+                <ul className={styles.subLinks}>
+                    {subLinks.map((subLink) => (
+                        <li key={subLink.to} className={styles.subLinkItem}>
+                            <NavLink
+                                to={subLink.to}
+                                className={getNavLinkClass}
+                            >
+                                {subLink.icon && (
+                                    <span className={styles.icon}>{subLink.icon}</span>
+                                )}
+                                <span className={styles.label}>{subLink.label}</span>
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </li>
+    );
 };
 
 export default NavItem;

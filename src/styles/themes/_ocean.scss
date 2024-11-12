@@ -1,0 +1,30 @@
+@use '../abstracts' as *;
+@use 'sass:color';
+
+/* Theme Ocean - Pastel Ocean Colors */
+
+.theme-ocean {
+  /* Primary Colors */
+  --color-primary: #77DD77; // Pastel Green
+  --color-primary-light: #{color.scale(#77DD77, $lightness: 10%)};
+  --color-primary-dark: #{color.scale(#77DD77, $lightness: -10%)};
+
+  /* Secondary Colors */
+  --color-secondary: #89CFF0; // Pastel Blue
+  --color-secondary-light: #{color.scale(#89CFF0, $lightness: 10%)};
+  --color-secondary-dark: #{color.scale(#89CFF0, $lightness: -10%)};
+
+  /* Accent Colors */
+  --color-accent: #CFCFC4; // Pastel Gray
+  --color-accent-light: #{color.scale(#CFCFC4, $lightness: 10%)};
+  --color-accent-dark: #{color.scale(#CFCFC4, $lightness: -10%)};
+
+  /* Neutral Colors */
+  --color-neutral: #F4F4F4; // Light Gray
+  --color-neutral-light: #{color.scale(#F4F4F4, $lightness: 10%)};
+  --color-neutral-dark: #{color.scale(#F4F4F4, $lightness: -10%)};
+
+  /* Background and Text */
+  --color-background: #E0FFFF; // Light Cyan
+  --color-text: #333333;
+}

@@ -1,1 +1,49 @@
+@use 'sass:map';
+@use '../../../styles/abstracts' as *;
+
+.sidebar {
+  background-color: var(--color-neutral-light);
+  padding: get-spacing('md');
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  position: sticky;
+  top: 0;
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      margin-bottom: get-spacing('sm');
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      a {
+        display: block;
+        color: var(--color-text);
+        text-decoration: none;
+        padding: get-spacing('sm') get-spacing('md');
+        border-radius: map.get($border-radius, 'md');
+        @include transition(background-color, color);
+
+        &.active {
+          background-color: var(--color-primary);
+          color: var(--color-background);
+        }
+
+        &:hover {
+          background-color: var(--color-primary-light);
+          color: var(--color-background);
+        }
+      }
+    }
+  }
+
+  @include respond-down('md') {
+    display: none; // Hide sidebar on small screens
+  }
+}
 

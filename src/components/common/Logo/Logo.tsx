@@ -1,13 +1,12 @@
 import React from 'react';
-import styles from './Logo.module.scss';
+import { Link } from 'react-router-dom';
 
 const Logo: React.FC = () => {
     return (
-        <div className={styles.logo}>
-            MyApp
+        <div className="logo">
+            <Link to="/">MyApp</Link>
         </div>
     );
 };
 
 export default Logo;
-

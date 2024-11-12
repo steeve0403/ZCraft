@@ -1,0 +1,11 @@
+@use '../abstracts' as *;
+
+.container {
+  @include container;
+}
+
+.main-content {
+  flex: 1;
+  padding: get-spacing('lg');
+}
+

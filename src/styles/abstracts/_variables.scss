@@ -1,109 +1,164 @@
-// src/styles/abstracts/_variables.scss
+// ==============================================
+// Variables
+// Contains global variables for the project
+// ==============================================
 
-:root {
-  /* ==================================================
-     Thème Clair (Défaut)
-  ================================================== */
-  /* Couleurs Primaires */
-  --color-primary: #A8D5E2;
-  --color-primary-variant: #7FBAC1;
-  --color-primary-tint: #D1EEF4;
+@use 'sass:map';
 
-  /* Couleurs Secondaires */
-  --color-secondary: #F7C6C7;
-  --color-secondary-variant: #E69FA0;
-  --color-secondary-tint: #FBE5E6;
+// 1. Generic Variables
+// ---------------------
 
-  /* Couleurs d'Accent */
-  --color-accent: #FFD3B6;
-  --color-accent-variant: #FFB482;
-  --color-accent-tint: #FFE3CC;
+// 1.1 Typography
+$font-families: (
+        'primary': 'Libre Franklin, sans-serif',
+        'secondary': 'Arvo, serif',
+);
 
-  /* Couleurs Neutres */
-  --color-neutral-light: #F5F5F5;
-  --color-neutral-medium: #CCCCCC;
-  --color-neutral-dark: #333333;
+$font-sizes: (
+  // Base font size is 16px (1rem)
+        'xs': 0.75rem, // 12px
+        'sm': 0.875rem, // 14px
+        'md': 1rem, // 16px
+        'lg': 1.125rem, // 18px
+        'xl': 1.25rem, // 20px
+        '2xl': 1.5rem, // 24px
+        '3xl': 1.875rem, // 30px
+        '4xl': 2.25rem, // 36px
+        '5xl': 3rem, // 48px
+);
 
-  /* Couleurs d'État */
-  --color-success: #A3D9A5;
-  --color-error: #E57373;
-  --color-warning: #FFCC80;
+$responsive-font-sizes: (
+        'sm': (
+                'xs': 0.6875rem, // 11px
+                'sm': 0.8125rem, // 13px
+                'md': 0.9375rem, // 15px
+                'lg': 1rem, // 16px
+                'xl': 1.125rem, // 18px
+                '2xl': 1.25rem, // 20px
+                '3xl': 1.5rem, // 24px
+                '4xl': 1.875rem, // 30px
+                '5xl': 2.25rem, // 36px
+        ),
+        'md': (
+          // Use base font sizes defined earlier
+                'xs': map.get($font-sizes, 'xs'),
+                'sm': map.get($font-sizes, 'sm'),
+                'md': map.get($font-sizes, 'md'),
+                'lg': map.get($font-sizes, 'lg'),
+                'xl': map.get($font-sizes, 'xl'),
+                '2xl': map.get($font-sizes, '2xl'),
+                '3xl': map.get($font-sizes, '3xl'),
+                '4xl': map.get($font-sizes, '4xl'),
+                '5xl': map.get($font-sizes, '5xl'),
+        ),
+        'lg': (
+                'xs': 0.8125rem, // 13px
+                'sm': 0.9375rem, // 15px
+                'md': 1.0625rem, // 17px
+                'lg': 1.1875rem, // 19px
+                'xl': 1.3125rem, // 21px
+                '2xl': 1.5625rem, // 25px
+                '3xl': 1.875rem, // 30px
+                '4xl': 2.25rem, // 36px
+                '5xl': 3rem, // 48px
+        ),
+  // Add more breakpoints if needed
+);
 
-  /* Typographie */
-  --font-primary: 'Libre Franklin', sans-serif;
-  --font-important: 'Arvo', serif;
+$font-weights: (
+        'light': 300,
+        'regular': 400,
+        'medium': 500,
+        'bold': 700,
+);
 
-  /* Autres Variables */
-  --border-radius: 4px;
-  --transition-speed: 0.3s;
-}
+$line-heights: (
+        'none': 1,
+        'tight': 1.25,
+        'snug': 1.375,
+        'normal': 1.5,
+        'relaxed': 1.625,
+        'loose': 2,
+);
 
-/* ==================================================
-   Thème Sombre
-================================================== */
-[data-theme="dark"] {
-  /* Couleurs Primaires */
-  --color-primary: #7FBAC1;
-  --color-primary-variant: #5F99A3;
-  --color-primary-tint: #B2D9E7;
+$letter-spacings: (
+        'tighter': -0.05em,
+        'tight': -0.025em,
+        'normal': 0,
+        'wide': 0.025em,
+        'wider': 0.05em,
+        'widest': 0.1em,
+);
 
-  /* Couleurs Secondaires */
-  --color-secondary: #E69FA0;
-  --color-secondary-variant: #C67880;
-  --color-secondary-tint: #F0BEC3;
+// 1.2 Spacing Scale
+$spacing-scale: (
+        'xs': 0.25rem,
+        'sm': 0.5rem,
+        'md': 1rem,
+        'lg': 1.5rem,
+        'xl': 2rem,
+        '2xl': 3rem,
+        '3xl': 4rem,
+);
 
-  /* Couleurs d'Accent */
-  --color-accent: #FFB482;
-  --color-accent-variant: #E69B60;
-  --color-accent-tint: #FFD2BA;
+// 1.3 Border Radius
+$border-radius: (
+        'none': 0,
+        'sm': 0.125rem,
+        'md': 0.25rem,
+        'lg': 0.5rem,
+        'full': 9999px,
+);
 
-  /* Couleurs Neutres */
-  --color-neutral-light: #2C3E50;
-  --color-neutral-medium: #34495E;
-  --color-neutral-dark: #ECF0F1;
+// 1.4 Breakpoints
+$breakpoints: (
+        'xs': 0,
+        'sm': 576px,
+        'md': 768px,
+        'lg': 992px,
+        'xl': 1200px,
+        'xxl': 1400px,
+);
 
-  /* Couleurs d'État */
-  --color-success: #27AE60;
-  --color-error: #C0392B;
-  --color-warning: #F39C12;
+// 1.5 Z-Index Scale
+$z-index-scale: (
+        'auto': auto,
+        'base': 0,
+        'dropdown': 1000,
+        'overlay': 1100,
+        'modal': 1200,
+        'popover': 1300,
+        'tooltip': 1400,
+);
 
-  /* Typographie */
-  --font-primary: 'Libre Franklin', sans-serif;
-  --font-important: 'Arvo', serif;
-}
+// 1.6 Opacity Levels
+$opacity-levels: (
+        '0': 0,
+        '10': 0.1,
+        '20': 0.2,
+        '30': 0.3,
+        '40': 0.4,
+        '50': 0.5,
+        '60': 0.6,
+        '70': 0.7,
+        '80': 0.8,
+        '90': 0.9,
+        '100': 1,
+);
 
-/* ==================================================
-   Thème Pastel
-================================================== */
-[data-theme="pastel"] {
-  /* Couleurs Primaires */
-  --color-primary: #FFB3BA;
-  --color-primary-variant: #FF8A9D;
-  --color-primary-tint: #FFCDD2;
+// 1.7 Transition Durations
+$transition-durations: (
+        'fast': 0.15s,
+        'normal': 0.3s,
+        'slow': 0.5s,
+);
 
-  /* Couleurs Secondaires */
-  --color-secondary: #BFD8B8;
-  --color-secondary-variant: #9DC1A2;
-  --color-secondary-tint: #C7E9C0;
+// 1.8 Glassmorphism Default Values (Generic)
+$glass-defaults: (
+        'background-translucent': rgba(255, 255, 255, 0.85),
+        'highlight': rgba(255, 255, 255, 0.25),
+        'shadow': rgba(0, 0, 0, 0.1),
+);
 
-  /* Couleurs d'Accent */
-  --color-accent: #FFDFBA;
-  --color-accent-variant: #FFC299;
-  --color-accent-tint: #FFE5CC;
-
-  /* Couleurs Neutres */
-  --color-neutral-light: #FFFFFF;
-  --color-neutral-medium: #F0F0F0;
-  --color-neutral-dark: #333333;
-
-  /* Couleurs d'État */
-  --color-success: #A3D9A5;
-  --color-error: #E57373;
-  --color-warning: #FFCC80;
-
-  /* Typographie */
-  --font-primary: 'Libre Franklin', sans-serif;
-  --font-important: 'Arvo', serif;
-}
 
 

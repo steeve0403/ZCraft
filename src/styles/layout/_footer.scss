@@ -1,0 +1,14 @@
+@use '../abstracts' as *;
+
+
+.footer {
+  background-color: var(--color-neutral-light);
+  padding: get-spacing('lg') 0;
+  text-align: center;
+  color: var(--color-text);
+
+  p {
+    //@include font-style('sm');
+    margin: 0;
+  }
+}

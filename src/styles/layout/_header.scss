@@ -1,0 +1,70 @@
+@use '../abstracts' as *;
+
+.header {
+  background-color: var(--color-background);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .header__container {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: get-spacing('sm') 0;
+  }
+
+  .logo {
+    font-family: 'Arvo', serif;
+    font-size: get-font-size('xl');
+    font-weight: get-font-weight('bold');
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+  }
+
+  .navigation {
+    ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        margin-right: get-spacing('lg');
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        a {
+          color: var(--color-text);
+          text-decoration: none;
+          @include transition(color);
+
+          &.active {
+            color: var(--color-primary);
+          }
+
+          &:hover {
+            color: var(--color-primary-dark);
+          }
+        }
+      }
+    }
+  }
+
+  .theme-toggle__button {
+    background: none;
+    border: none;
+    font-size: get-font-size('xl');
+    cursor: pointer;
+    color: var(--color-text);
+    @include transition(color);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+}
+

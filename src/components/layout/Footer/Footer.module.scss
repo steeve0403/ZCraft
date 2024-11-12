@@ -1,0 +1,13 @@
+@use '../../../styles/abstracts' as *;
+
+.footer {
+  background-color: var(--color-neutral-dark);
+  color: var(--color-background);
+  padding: get-spacing('md') 0;
+  text-align: center;
+
+  .footerContainer {
+    @include container;
+  }
+}
+

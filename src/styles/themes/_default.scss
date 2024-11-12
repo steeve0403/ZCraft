@@ -1,0 +1,41 @@
+@use '../abstracts' as *;
+@use 'sass:color';
+
+/* Default Theme - Pastel Colors */
+
+:root {
+  /* Primary Colors */
+  --color-primary: #A8DADC; // Pastel Aqua
+  --color-primary-light: #C3E5E6;
+  --color-primary-dark: #78B0B2;
+  --color-primary-translucent: rgba(168, 218, 220, 0.6);
+
+  /* Secondary Colors */
+  --color-secondary: #F4A261; // Soft Coral
+  --color-secondary-light: #F6B081;
+  --color-secondary-dark: #C37B48;
+  --color-secondary-translucent: rgba(244, 162, 97, 0.6);
+
+  /* Accent Colors */
+  --color-accent: #457B9D; // Pastel Slate Blue
+  --color-accent-light: #7094B0;
+  --color-accent-dark: #325A74;
+  --color-accent-translucent: rgba(69, 123, 157, 0.6);
+
+  /* Neutral Colors */
+  --color-neutral: #E9ECEF; // Soft Light Gray
+  --color-neutral-light: #F7F9FA;
+  --color-neutral-dark: #BFC5C9;
+  --color-neutral-translucent: rgba(233, 236, 239, 0.6);
+
+  /* Background and Text */
+  --color-background: #FFFFFF; // Background White
+  --color-background-translucent: rgba(255, 255, 255, 0.85);
+  --color-text: #4A4A4A; // Dark Neutral Gray
+  --color-text-light: #A3A3A3;
+  --color-text-dark: #2B2B2B;
+
+  /* Glass Effect Highlights */
+  --color-glass-highlight: rgba(255, 255, 255, 0.25);
+  --color-glass-shadow: rgba(0, 0, 0, 0.1);
+}

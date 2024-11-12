@@ -1,0 +1,106 @@
+// ==============================================
+// Functions
+// Contains helper functions for the project
+// ==============================================
+
+@use 'variables' as *;
+@use 'sass:map';
+
+// 1. Get CSS Variable
+// -------------------
+
+/// Retrieves a CSS variable.
+/// @param {String} $name - The name of the CSS variable.
+/// @return {String} - The CSS variable.
+@function var-css($name) {
+  @return unquote("var(--#{$name})");
+}
+
+// 2. Get Font Family
+// -------------------
+
+/// Retrieves a font family from the $font-families map.
+/// @param {String} $font-key - The key of the font family.
+/// @return {String} - The font family value.
+@function get-font-family($font-key) {
+  @return map.get($font-families, $font-key);
+}
+
+// 3. Get Font Size
+// -----------------
+
+/// Retrieves a font size from the $font-sizes map.
+/// @param {String} $size-key - The key of the font size.
+/// @return {Number} - The font size value.
+@function get-font-size($size-key) {
+  @return map.get($font-sizes, $size-key);
+}
+
+// 4. Get Font Weight
+// -------------------
+
+/// Retrieves a font weight from the $font-weights map.
+/// @param {String} $weight-key - The key of the font weight.
+/// @return {Number} - The font weight value.
+@function get-font-weight($weight-key) {
+  @return map.get($font-weights, $weight-key);
+}
+
+// 9. Get Responsive Font Size
+// ---------------------------
+
+/// Retrieves a font size from the $responsive-font-sizes map based on the breakpoint.
+/// @param {String} $size-key - The key of the font size.
+/// @param {String} $breakpoint - The breakpoint key.
+/// @return {Number} - The responsive font size value.
+@function get-responsive-font-size($size-key, $breakpoint) {
+  $breakpoint-sizes: map.get($responsive-font-sizes, $breakpoint);
+  @if $breakpoint-sizes == null {
+    @error "Breakpoint '#{$breakpoint}' not found in \$responsive-font-sizes map.";
+  }
+  $font-size: map.get($breakpoint-sizes, $size-key);
+  @if $font-size == null {
+    @error "Font size '#{$size-key}' not found in \$responsive-font-sizes at breakpoint '#{$breakpoint}'.";
+  }
+  @return $font-size;
+}
+
+// 5. Get Spacing
+// ---------------
+
+/// Retrieves a spacing value from the $spacing-scale map.
+/// @param {String} $spacing-key - The key of the spacing value.
+/// @return {Number} - The spacing value.
+@function get-spacing($spacing-key) {
+  @return map.get($spacing-scale, $spacing-key);
+}
+
+// 6. Get Border Radius
+// ---------------------
+
+/// Retrieves a border-radius value from the $border-radius map.
+/// @param {String} $radius-key - The key of the border-radius value.
+/// @return {Number} - The border-radius value.
+@function get-border-radius($radius-key) {
+  @return map.get($border-radius, $radius-key);
+}
+
+// 7. Get Breakpoint
+// ------------------
+
+/// Retrieves a breakpoint value from the $breakpoints map.
+/// @param {String} $breakpoint-key - The key of the breakpoint.
+/// @return {Number} - The breakpoint value.
+@function get-breakpoint($breakpoint-key) {
+  @return map.get($breakpoints, $breakpoint-key);
+}
+
+// 8. Strip Unit
+// --------------
+
+/// Removes the unit from a value.
+/// @param {Number} $number - The value with unit.
+/// @return {Number} - The value without unit.
+@function strip-unit($number) {
+  @return $number / ($number * 0 + 1);
+}

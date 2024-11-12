@@ -1,27 +1,21 @@
-// src/components/Navigation/Navigation.tsx
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import styles from './Navigation.module.scss';
 
 const Navigation: React.FC = () => {
     return (
-        <nav className={styles.navigation}>
-            <ul>
+        <nav className="navigation">
+            <ul className="navigation__list">
                 <li>
-                    <NavLink to="/home" className={({ isActive }) => isActive ? 'text-accent' : 'text-white'}>
-                        Home
-                    </NavLink>
+                    <NavLink to="/">Home</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/about" className={({ isActive }) => isActive ? 'text-accent' : 'text-white'}>
-                        About
-                    </NavLink>
+                    <NavLink to="/about">About</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/contact" className={({ isActive }) => isActive ? 'text-accent' : 'text-white'}>
-                        Contact
-                    </NavLink>
+                    <NavLink to="/services">Services</NavLink>
+                </li>
+                <li>
+                    <NavLink to="/contact">Contact</NavLink>
                 </li>
             </ul>
         </nav>

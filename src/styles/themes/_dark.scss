@@ -1,0 +1,30 @@
+@use '../abstracts' as *;
+@use 'sass:color';
+
+/* Dark Theme - Darker Pastel Colors */
+
+.theme-dark {
+  /* Primary Colors */
+  --color-primary: #77969A; // Dark Pastel Blue
+  --color-primary-light: #{color.scale(#77969A, $lightness: 10%)};
+  --color-primary-dark: #{color.scale(#77969A, $lightness: -10%)};
+
+  /* Secondary Colors */
+  --color-secondary: #CC7A93; // Dark Pastel Pink
+  --color-secondary-light: #{color.scale(#CC7A93, $lightness: 10%)};
+  --color-secondary-dark: #{color.scale(#CC7A93, $lightness: -10%)};
+
+  /* Accent Colors */
+  --color-accent: #806D8A; // Dark Pastel Purple
+  --color-accent-light: #{color.scale(#806D8A, $lightness: 10%)};
+  --color-accent-dark: #{color.scale(#806D8A, $lightness: -10%)};
+
+  /* Neutral Colors */
+  --color-neutral: #BDB76B; // Dark Pastel Yellow
+  --color-neutral-light: #{color.scale(#BDB76B, $lightness: 10%)};
+  --color-neutral-dark: #{color.scale(#BDB76B, $lightness: -10%)};
+
+  /* Background and Text */
+  --color-background: #2E2E2E;
+  --color-text: #F0F0F0;
+}

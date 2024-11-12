@@ -1,24 +1,19 @@
-@use 'sass:map';
-@use '@/styles/abstracts' as *;
+@use '../../styles/abstracts' as *;
 
 .home {
-  padding: map.get($spacing-scale, 1);
-  background-color: var(--background-primary);
-  min-height: 100vh;
+  padding: get-spacing('lg');
 
-  h1 {
-    font-size: map.get($font-sizes, xxl);
+  h2 {
+    font-size: get-font-size('2xl');
     color: var(--color-primary);
-    margin-bottom: map.get($spacing-scale, 2);
   }
 
   p {
-    font-size: map.get($font-sizes, md);
-    color: var(--text-primary);
-    margin-bottom: map.get($spacing-scale, 3);
+    font-size: get-font-size('md');
+    margin-bottom: get-spacing('md');
   }
 
-  .home__cta {
-    margin-top: map.get($spacing-scale, 2);
+  .button {
+    //@include button; // Assuming you have a button mixin
   }
 }
